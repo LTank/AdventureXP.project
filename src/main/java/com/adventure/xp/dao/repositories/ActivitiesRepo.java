@@ -8,8 +8,7 @@ import com.adventure.xp.dao.DButil.DBupdate;
 
 import java.util.ArrayList;
 
-public class UserRepo implements ICrudRepo{
-
+public class ActivitiesRepo implements ICrudRepo {
 
     private DBcreate dbc;
     private DBread dbr;
@@ -17,25 +16,23 @@ public class UserRepo implements ICrudRepo{
     private DBdelete dbd;
     private DBUtil util;
 
-
-    // This is the method used in dao. Refer to the specific "DB" class and put logic ind there. NOT HERE!
     @Override
-    public int create (Object o) {
-        return dbc.createUser(o);
-    }
-
-    @Override
-    public int read (int id) {
+    public int create(Object o) {
         return 0;
     }
 
     @Override
-    public int update (Object o) {
+    public int read(int id) {
         return 0;
     }
 
     @Override
-    public int delete (Object o) {
+    public int update(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Object o) {
         return 0;
     }
 
