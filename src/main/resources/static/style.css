@@ -1,0 +1,27 @@
+body {
+    background-color: white; /* #ABC5E8 senere */
+}
+
+.navbar {
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    height: 4%;
+    background-color: white;
+    margin: 0;
+}
+
+#horizontalLine {
+    margin-left: 0px;
+    z-index: 2;
+    width: 100%;
+    color: black;
+}
+
+.profiles {
+    margin: 20px;
+}
+
+.logoBig {
+    margin-left: 35%;
+}
