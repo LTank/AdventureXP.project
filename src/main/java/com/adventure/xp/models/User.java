@@ -3,12 +3,12 @@ package com.adventure.xp.models;
 public class User {
     private String username;
     private String password;
-    private int role;
+    private int enabled;
 
-    public User(String username, String password, int role) {
+    public User(String username, String password, int enabled) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.enabled = enabled;
     }
 
     public User() {
@@ -31,12 +31,12 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
-        return role;
+    public int getEnabled() {
+        return enabled;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", enabled=" + enabled +
                 '}';
     }
 }
