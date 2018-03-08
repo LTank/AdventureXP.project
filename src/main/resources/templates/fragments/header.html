@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:fragment="header-css">
+        <link rel="stylesheet" th:href="@{/css/style.css}"
+              href="../../css/style.css" />
+    </div>
+</head>
+<body>
+<div th:fragment="header">
+    <ul>
+        <li><a href="index.html" th:href="@{/}"> <img th:src="@{/img/logo.png}"/></a></li>
+        <li><a href="/" th:href="@{#}">Kalender</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" th:href="@{javascript:void(0)}" class="dropbtn">Aktiviteter</a>
+            <div class="dropdown-content">
+                <a href="/" th:href="@{/}">Gokart</a>
+                <a href="/" th:href="@{/}">Paintball</a>
+                <a href="/" th:href="@{/}">Minigolf</a>
+                <a href="/" th:href="@{/}">Sumo wrestling</a>
+            </div>
+        </li>
+    </ul>
+    <hr id="horizontalLine"/>
+</div>
+</body>
+</html>
+
