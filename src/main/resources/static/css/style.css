@@ -20,32 +20,36 @@ body {
 
 .profiles {
     margin: 20px;
+    text-align: center;
 }
 
 .logoBig {
-    margin-left: 35%;
+    margin: 20px;
+    text-align: center;
 }
 
 /* button */
 .btn {
-    background: #2C8C99;
-    color: #dce2df;
+    background: yellow;
+    color: black;
     padding: 7px 10px;
     font-size: 14px;
     border-radius: 5px;
     text-align: center;
     box-shadow: 1px 1px 1px #888888;
-    margin-bottom: 5px;
+    margin: 5px;
     display: inline-block;
     text-decoration: none;
+    border-width: 0px;
+    font-family: Arial;
 }
 
 .btn:hover  {
-    background-color: #326771;
+    background-color: #b3b300;
 }
 
 .btn.cancel:hover {
-    background-color: #326771;
+    background-color: #b3b300;
 }
 /* popup login menu */
 
@@ -56,7 +60,7 @@ body {
     padding: 20px;
     background: rgb(213, 213, 213);
     border-radius: 5px;
-    width: 30%;
+    width: 25%;
     position: relative;
 }
 
