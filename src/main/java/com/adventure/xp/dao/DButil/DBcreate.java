@@ -17,12 +17,14 @@ public class DBcreate {
     }
 
     public int createEvent (Event e) {
-        String query = "INSERT INTO events (id, url, date_start, date_end, title, color, description) " +
-                        "VALUES (" + e.getId() + ", " + e.getUrl() + ", " + e.getStart() + ", " + e.getEnd() +
+        String query = "INSERT INTO events (url, date_start, date_end, title, color, description) " +
+                        "VALUES (" + e.getUrl() + ", " + e.getStart() + ", " + e.getEnd() +
                         ", " + e.getTitle() + ", " + e.getColor() + ", " + e.getDescription() + ");";
 
 
+        System.out.println(e.toString() + " getting added to the database");
         return jdbc.update(query);
+
     }
 
 

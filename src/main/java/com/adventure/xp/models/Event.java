@@ -3,6 +3,8 @@ package com.adventure.xp.models;
 import java.util.Date;
 
 public class Event {
+
+
     private int id;
     private String url;
     private Date start;
@@ -21,6 +23,7 @@ public class Event {
         this.color = color;
         this.description = description;
     }
+
 
     public Event() {
     }

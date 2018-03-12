@@ -1,21 +1,21 @@
 package com.adventure.xp.dao.repositories;
 
-import ch.qos.logback.core.db.dialect.DBUtil;
-import com.adventure.xp.dao.DButil.DBcreate;
-import com.adventure.xp.dao.DButil.DBdelete;
-import com.adventure.xp.dao.DButil.DBread;
-import com.adventure.xp.dao.DButil.DBupdate;
+
+import com.adventure.xp.dao.DButil.*;
 import com.adventure.xp.models.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class EventRepo implements ICrudRepo<Event> {
 
     private DBcreate dbc;
     private DBread dbr;
     private DBupdate dbu;
     private DBdelete dbd;
-    private DBUtil util;
+    private Util util;
 
     @Override
     public int create(Event e) {

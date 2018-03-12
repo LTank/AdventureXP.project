@@ -1,20 +1,18 @@
 package com.adventure.xp.dao.repositories;
 
-import ch.qos.logback.core.db.dialect.DBUtil;
-import com.adventure.xp.dao.DButil.DBcreate;
-import com.adventure.xp.dao.DButil.DBdelete;
-import com.adventure.xp.dao.DButil.DBread;
-import com.adventure.xp.dao.DButil.DBupdate;
+import com.adventure.xp.dao.DButil.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class ActivitiesRepo implements ICrudRepo {
 
     private DBcreate dbc;
     private DBread dbr;
     private DBupdate dbu;
     private DBdelete dbd;
-    private DBUtil util;
+    private Util util = new Util();
 
     @Override
     public int create(Object o) {
@@ -39,5 +37,16 @@ public class ActivitiesRepo implements ICrudRepo {
     @Override
     public ArrayList readAll() {
         return null;
+    }
+
+
+    public String getColorByTitle(String title){
+
+        return util.getColorByActivity(title);
+    }
+
+    public String getDescriptionByTitle(String title) {
+
+        return util.getDescriptionByTitle(title);
     }
 }
