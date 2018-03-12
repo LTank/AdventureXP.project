@@ -10,18 +10,16 @@
     </div>
     <div class="content">
         <h1>Create/Edit Event:</h1>
-        <form th:action="@{/createEvent}" method="post">
-            <select name="activity">
+        <form th:action="@{/createEvent}" method="post" th:object="${booking}">
+            <select name="activity" th:field="*{activity}">
                 <option value="minigolf">Minigolf</option>
                 <option value="lasertag">LaserTag</option>
                 <option value="bowling">Bowling</option>
             </select>
             <label for="date">Date:</label>
-            <input type="date" name="edate" id="date">
-            <label for="time">Time:</label>
-            <input type="time" name="etime" id="time">
+            <input type="datetime-local" id="date" th:field="*{date}">
             <label for="attendants">Number of Attendants:</label>
-            <input type="text" name="eattendants" id="attendants">
+            <input type="text" id="attendants" th:field="*{numberOfCustomers}">
 
             <input type="submit" name="submit" value="Submit">
         </form>

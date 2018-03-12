@@ -9,6 +9,7 @@ public class Reservation {
     private int numberOfCustomers;
     private int status;
 
+
     public Reservation(int id, Date date, int numberOfCustomers, int status) {
         this.id = id;
         this.date = date;
