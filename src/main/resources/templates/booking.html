@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="relics">
+    <title>Adventure Alley</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div class="header">
+
+    </div>
+    <div class="content">
+        <h1>Create/Edit Event:</h1>
+        <form th:action="@{/createEvent}" method="post">
+            <select name="activity">
+                <option value="minigolf">Minigolf</option>
+                <option value="lasertag">LaserTag</option>
+                <option value="bowling">Bowling</option>
+            </select>
+            <label for="date">Date:</label>
+            <input type="date" name="edate" id="date">
+            <label for="time">Time:</label>
+            <input type="time" name="etime" id="time">
+            <label for="attendants">Number of Attendants:</label>
+            <input type="text" name="eattendants" id="attendants">
+
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+    <div class="footer">
+
+    </div>
+
+</body>
+</html>

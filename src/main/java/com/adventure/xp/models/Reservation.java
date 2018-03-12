@@ -1,5 +1,6 @@
 package com.adventure.xp.models;
 
+
 import java.util.Date;
 
 public class Reservation {

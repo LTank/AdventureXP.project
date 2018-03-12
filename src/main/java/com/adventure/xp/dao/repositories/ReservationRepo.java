@@ -5,9 +5,11 @@ import com.adventure.xp.dao.DButil.DBcreate;
 import com.adventure.xp.dao.DButil.DBdelete;
 import com.adventure.xp.dao.DButil.DBread;
 import com.adventure.xp.dao.DButil.DBupdate;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class ReservationRepo implements ICrudRepo {
 
     private DBcreate dbc;
