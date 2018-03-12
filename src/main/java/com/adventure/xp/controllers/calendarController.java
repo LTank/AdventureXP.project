@@ -17,7 +17,7 @@ public class calendarController {
 
     @RequestMapping(path = "/calendar", method = RequestMethod.GET)
     String index (Model model){
-        return "calendar/index";
+        return "calendar";
     }
 
 }

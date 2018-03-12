@@ -1,7 +1,6 @@
 package com.adventure.xp.controllers;
 
 
-import com.adventure.xp.models.Event;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +19,6 @@ public class RestWebController {
         String jsonMsg = null;
         try {
             List<Event> events = new ArrayList<Event>();
-            Event event = new Event();
-            event.setTitle("first event");
-            event.setStart("2018-03-01");
-            event.setEnd("2018-03-01");
-            events.add(event);
-
-            event = new Event();
-            event.setTitle("second event");
-            event.setStart("2018-03-11");
-            event.setEnd("2018-03-11");
-            events.add(event);
-
             ObjectMapper mapper = new ObjectMapper();
             jsonMsg = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);
         } catch (JsonProcessingException e) {
