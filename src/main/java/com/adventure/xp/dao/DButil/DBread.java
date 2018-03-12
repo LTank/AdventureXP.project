@@ -4,10 +4,12 @@ import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 // This Class is for read methods only.
+@Repository
 public class DBread {
 
     @Autowired
@@ -15,8 +17,8 @@ public class DBread {
     private SqlRowSet sqlRowSet;
 
     public ArrayList<Event> readAllEvents() {
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events");
         ArrayList<Event> events = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events");
         while (sqlRowSet.next()) {
             events.add(new Event(
                     sqlRowSet.getInt("id"),
