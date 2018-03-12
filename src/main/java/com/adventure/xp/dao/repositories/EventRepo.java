@@ -9,7 +9,7 @@ import com.adventure.xp.models.Event;
 
 import java.util.ArrayList;
 
-public class EventRepo implements ICrudRepo {
+public class EventRepo implements ICrudRepo<Event> {
 
     private DBcreate dbc;
     private DBread dbr;
@@ -18,8 +18,8 @@ public class EventRepo implements ICrudRepo {
     private DBUtil util;
 
     @Override
-    public int create(Object o) {
-        return 0;
+    public int create(Event e) {
+        return dbc.createEvent(e);
     }
 
     @Override
@@ -28,12 +28,12 @@ public class EventRepo implements ICrudRepo {
     }
 
     @Override
-    public int update(Object o) {
+    public int update(Event e) {
         return 0;
     }
 
     @Override
-    public int delete(Object o) {
+    public int delete(Event e) {
         return 0;
     }
 
