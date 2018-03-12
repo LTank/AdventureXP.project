@@ -1,6 +1,7 @@
 package com.adventure.xp.controllers;
 
 
+import com.adventure.xp.dao.repositories.EventRepo;
 import com.adventure.xp.models.Event;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,11 +16,12 @@ import java.util.List;
 @RequestMapping("/api/event")
 public class RestWebController {
 
+    EventRepo er = new EventRepo();
     @GetMapping(value = "/all")
     public String getEvents() {
         String jsonMsg = null;
         try {
-            List<Event> events = new ArrayList<Event>();
+            List<Event> events = er.readAll();
             ObjectMapper mapper = new ObjectMapper();
             jsonMsg = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);
         } catch (JsonProcessingException e) {
