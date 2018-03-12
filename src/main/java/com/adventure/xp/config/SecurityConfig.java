@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(  "/css/**", "/img/**", "login").permitAll() // Permission: Anyone
-                    .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
+                    .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/calendar", true).and().logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login").permitAll()
                     .and().exceptionHandling().accessDeniedPage("/403");
