@@ -90,3 +90,75 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
     margin-bottom: 2px;
 }
+
+
+/* navbar styling */
+
+body {
+    margin: 0;
+}
+
+div.navbar {
+    position: fixed;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    top: 0;
+    background-color: white;
+
+}
+
+/*
+div.logo {
+    border: 2px solid blue;
+}
+
+div.links {
+    border: 2px solid black;
+} */
+
+div.kalender, div.dropdown, div.logout {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: #2C8C99;
+}
+div.logout{
+    position: fixed;
+    right: 30px;
+
+
+}
+
+a.btn {
+    color: black;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2C8C99;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover, div.kalender:hover, div.dropdown:hover, div.logout:hover {
+    background-color: #326771;
+}
+
+.dropdown:hover .dropdown-content   {
+    display: block;
+}
+input.search  {
+    display: inline-block;
+    padding: 12px 16px;
+}
