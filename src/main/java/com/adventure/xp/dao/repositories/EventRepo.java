@@ -39,6 +39,6 @@ public class EventRepo implements ICrudRepo {
 
     @Override
     public ArrayList<Event> readAll() {
-        return null;
+        return dbr.readAllEvents();
     }
 }
