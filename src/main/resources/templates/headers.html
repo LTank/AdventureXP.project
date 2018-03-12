@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:fragment="header-css">
+        <link rel="stylesheet" th:href="@{/css/style.css}"
+              href="../../css/style.css" />
+    </div>
+
+    <style>
+
+        body {
+            margin: 0;
+        }
+
+        div.navbar {
+            position: fixed;
+            width: 100%;
+            margin: auto;
+            padding: 0;
+            top: 0;
+            background-color: white;
+
+        }
+
+
+        /*
+                div.links {
+                    border: 2px solid black;
+                } */
+
+        div.kalender, div.dropdown, div.logout {
+            display: inline-block;
+            padding: 12px 16px;
+            background-color: #f9f9f9;
+        }
+        div.logout{
+            position: fixed;
+            right: 30px;
+
+
+        }
+
+        a.btn {
+            color: black;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover, div.kalender:hover, div.dropdown:hover, div.logout:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content   {
+            display: block;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+<div th:fragment="header">
+    <div class="navbar">
+        <ul>
+
+            <div class="logo">
+                <li><a href="index.html" th:href="@{/}"> <img th:src="@{/img/logo.png}"/></a></li>
+            </div>
+            <div class="links">
+                <div class="kalender"><a class="btn" href="/" th:href="@{#}">Kalender</a></div>
+
+                <div class="dropdown">
+                    <a href="javascript:void(0)" th:href="@{javascript:void(0)}" class="btn">Aktiviteter</a>
+                    <div class="dropdown-content">
+                        <a href="/" th:href="@{/}">Gokart</a>
+                        <a href="/" th:href="@{/}">Paintball</a>
+                        <a href="/" th:href="@{/}">Minigolf</a>
+                        <a href="/" th:href="@{/}">Sumo wrestling</a>
+                    </div>
+                </div>
+
+                <div class="logout"><a class="btn" href="/" th:href="@{/}">logout</a></div>
+            </div>
+        </ul>
+        <hr id="horizontalLine"/>
+    </div>
+</div>
+
+<pre>g
