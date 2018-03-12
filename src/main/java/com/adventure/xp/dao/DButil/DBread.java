@@ -21,8 +21,8 @@ public class DBread {
             events.add(new Event(
                     sqlRowSet.getInt("id"),
                     sqlRowSet.getString("url"),
-                    sqlRowSet.getDate("start"),
-                    sqlRowSet.getDate("end"),
+                    sqlRowSet.getDate("date_start"),
+                    sqlRowSet.getDate("date_end"),
                     sqlRowSet.getString("title"),
                     sqlRowSet.getString("color"),
                     sqlRowSet.getString("description")));

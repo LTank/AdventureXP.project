@@ -5,7 +5,7 @@ w<!DOCTYPE html>
 </head>
 <body>
 <div class="container logoBig">
-    <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logoBig.png}"/></a>
+    <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logoBig.PNG}"/></a>
 </div>
 <form  th:action="@{/login}" method="post">
 <div class="container profiles">
@@ -29,11 +29,11 @@ w<!DOCTYPE html>
                 <!--her er de 2 textblocke til username og password-->
                 <div class="form-group">
                     <input type="hidden" name="username" value="user" class="login-input"
-                           placeholder="Brugernavn" required="true" autofocus="true"/>
+                           placeholder="Brugernavn" required="true"/>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="login-input"
-                           placeholder="Kodeord" required="true"/>
+                    <input type="password"  name="password" class="login-input"
+                           placeholder="Kodeord" required="true" autofocus="true"/>
                 </div>
 
                 <!-- her er knapperne i popup boxen -->
