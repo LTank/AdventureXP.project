@@ -16,7 +16,7 @@ public class calendarController {
 //    }
 
     @RequestMapping(path = "/calendar", method = RequestMethod.GET)
-    String index (Model model){
+    String calendarShow (Model model){
         return "calendar";
     }
 
