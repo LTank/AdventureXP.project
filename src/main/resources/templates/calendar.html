@@ -51,12 +51,13 @@
                     url: '/api/event/all'
                 },
                 eventClick: function(event) {
-                        var dataa = {eventId : event.id};
-                        jQuery.ajax({
-                            type : "GET",
+                        $.ajax({
+                            type : "POST",
                             url : "/event",
-                            contentType: "application/json; charset=utf-8",
-                            data : dataa
+                            data : {eventId: event.id}
+                            error: function (jqxhr, status, exception) {
+                                alert(status)
+                            }
                         })
                 }
             });

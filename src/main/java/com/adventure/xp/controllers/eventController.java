@@ -11,8 +11,8 @@ import java.awt.*;
 @Controller
 public class eventController {
 
-    @RequestMapping(value = "/event", method = RequestMethod.GET)
-    public String pointUrl (@RequestParam("eventId")String eventId) {
+    @RequestMapping(value = "/event", method = RequestMethod.POST, produces = MediaType.APPLICATION_PROBLEM_JSON_VALUE)
+    public @ResponseBody String pointUrl (@RequestParam("eventId")String eventId) {
         System.out.println(eventId);
         return "index";
     }
