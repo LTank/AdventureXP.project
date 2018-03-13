@@ -8,18 +8,19 @@
 <div class="container">
 
     <div class="activityBox" th:each="a : ${activities}">
-        <th> Aktivitet</th>
-        <td th:text="${a.name}"></td>
+        <a class="clickable" th:href="@{/activitiesOverview(id=${a.id})}">
+        <td th:text="${a.name}"></td> </br>
         <th>Aldersbegrænsning</th>
-        <td th:text="${a.ageLimit}"></td>
+        <td th:text="${a.ageLimit}"></td> </br>
         <th>Højdebegrænsning</th>
-        <td th:text="${a.heightLimit}"></td>
+        <td th:text="${a.heightLimit}"></td> </br>
         <th>Max tilmeldte</th>
-        <td th:text="${a.maxAttendants}"></td>
+        <td th:text="${a.maxAttendants}"></td> </br>
         <th>Pris</th>
-        <td th:text="${a.price}"></td>
+        <td th:text="${a.price}"></td> </br>
         <th>Beskrivelse</th>
         <td th:text="${a.description}"></td>
+        </a>
     </div>
 
 </div>
