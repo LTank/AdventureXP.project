@@ -1,5 +1,7 @@
 package com.adventure.xp.dao.DButil;
 
+import com.adventure.xp.dao.repositories.ActivitiesRepo;
+import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,5 +32,39 @@ public class DBread {
                     sqlRowSet.getString("description")));
         }
         return events;
+    }
+
+    public Activity readActivity(int id) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE product_id='" + id + "'");
+        while (sqlRowSet.next()) {
+            return new Activity(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("name"),
+                    sqlRowSet.getInt("age_limit"),
+                    sqlRowSet.getInt("height_limit"),
+                    sqlRowSet.getInt("max_attendants"),
+                    sqlRowSet.getDouble("price"),
+                    sqlRowSet.getString("calendar_color"),
+                    sqlRowSet.getString("description"));
+        }
+        return new Activity();
+
+    }
+
+    public ArrayList<Activity> readAllActivities() {
+        ArrayList<Activity> activities = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities");
+        while (sqlRowSet.next()) {
+            activities.add(new Activity(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("name"),
+                    sqlRowSet.getInt("age_limit"),
+                    sqlRowSet.getInt("height_limit"),
+                    sqlRowSet.getInt("max_attendants"),
+                    sqlRowSet.getDouble("price"),
+                    sqlRowSet.getString("calendar_color"),
+                    sqlRowSet.getString("description")));
+        }
+        return activities;
     }
 }

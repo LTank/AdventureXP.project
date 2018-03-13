@@ -6,7 +6,7 @@ public interface ICrudRepo<T> {
 
     public int create (T t);
 
-    public int read (int id);
+    public T read (int id);
 
     public int update (T t);
 
