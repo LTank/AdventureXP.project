@@ -24,7 +24,7 @@ public class ReservationRepo implements ICrudRepo {
     }
 
     @Override
-    public int read(int id) {
+    public Object read(int id) {
         return 0;
     }
 

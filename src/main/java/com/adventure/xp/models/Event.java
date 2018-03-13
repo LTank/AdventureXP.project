@@ -1,5 +1,7 @@
 package com.adventure.xp.models;
 
+
+
 import java.util.Date;
 
 public class Event {
@@ -7,6 +9,7 @@ public class Event {
 
     private int id;
     private String url;
+
     private Date start;
     private Date end;
     private String title;

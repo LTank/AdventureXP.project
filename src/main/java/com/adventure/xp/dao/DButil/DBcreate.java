@@ -3,8 +3,12 @@ package com.adventure.xp.dao.DButil;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Timestamp;
 
 // This Class is for create methods only.
+@Repository
 public class DBcreate {
 
     @Autowired
@@ -18,13 +22,9 @@ public class DBcreate {
 
     public int createEvent (Event e) {
         String query = "INSERT INTO events (url, date_start, date_end, title, color, description) " +
-                        "VALUES (" + e.getUrl() + ", " + e.getStart() + ", " + e.getEnd() +
-                        ", " + e.getTitle() + ", " + e.getColor() + ", " + e.getDescription() + ");";
+                        "VALUES (?, ?, ?, ?, ?, ?);";
 
-
-        System.out.println(e.toString() + " getting added to the database");
-        return jdbc.update(query);
-
+        return jdbc.update(query, new Object[] {e.getUrl(), new Timestamp(e.getStart().getTime()), new Timestamp(e.getEnd().getTime()), e.getTitle(), e.getColor(), e.getDescription()});
     }
 
 

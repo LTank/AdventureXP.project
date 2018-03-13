@@ -12,9 +12,7 @@
         <h1>Create/Edit Event:</h1>
         <form th:action="@{/createEvent}" method="post" th:object="${eventForm}">
             <select name="activity" th:field="*{activity}">
-                <option value="minigolf">Minigolf</option>
-                <option value="lasertag">LaserTag</option>
-                <option value="bowling">Bowling</option>
+                <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
             </select>
             <label for="startDate">Start Date:</label>
             <input type="datetime-local" id="startDate" th:field="*{startDate}">

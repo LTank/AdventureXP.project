@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 
@@ -32,8 +33,16 @@ public class BookingController {
 
 
     @RequestMapping(value="/booking", method=RequestMethod.GET)
-    public String eventForm(Model model){
-        model.addAttribute("eventForm", new EventForm());
+    public String eventForm(@RequestParam(name="id", required = false) Integer name, Model model){
+        model.addAttribute("activities", activityRepo.readAll());
+        EventForm eventForm = new EventForm();
+        if(name!=null){
+            Event event = eventRepo.read(name);
+            eventForm.setActivity(event.getTitle());
+            eventForm.setStartDate(event.getStart());
+            eventForm.setEndDate(event.getEnd());
+        }
+        model.addAttribute("eventForm", eventForm);
         return "booking";
     }
 
@@ -57,7 +66,7 @@ public class BookingController {
 
     private Event createEventFromForm(EventForm eventForm){
         int eventId =  0; // Event gets an ID when entry in database
-        String url = "/booking?i="; // The url gonna get the database ID concatenated
+        String url = "booking"; // The url gonna get the database ID concatenated
 
         Date start = eventForm.getStartDate();
         Date end = eventForm.getEndDate();
