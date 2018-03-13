@@ -1,6 +1,7 @@
 package com.adventure.xp.dao.DButil;
 
 import com.adventure.xp.models.Activity;
+import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,21 @@ public class DBupdate {
             e.printStackTrace();
         }
         return -1; // If error
+    }
+
+    public int updateEventById(Event event) {
+        try {
+            jdbc.update("UPDATE events SET date_start = '" + event.getStart()
+                    + "', date_end = '" + event.getEnd()
+                    + "', title = + '" + event.getTitle()
+                    + "', color = '" + event.getColor()
+                    + "', description = '" + event.getDescription()
+                    + "'WHERE id = " + event.getId());
+            return 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }
