@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout :: relics">
+
+</head>
+<body>
+
+<div class="activityBox" th:each="a : ${activities}">
+    <a th:href="@{/activitiesOverview(id=${a.id})}" class="clickable"><div>
+    <h3 > Aktivitet:</h3>
+    <pre th:text="${a.name}"></pre>
+    <h3>Aldersbegr&aelig;nsning:</h3>
+    <pre th:text="${a.ageLimit}"></pre>
+    <h3>H&oslash;jdebegr&aelig;nsning:</h3>
+    <pre th:text="${a.heightLimit}"></pre>
+    <h3>Max tilmeldte:</h3>
+    <pre th:text="${a.maxAttendants}"></pre>
+    <h3>Pris:</h3>
+    <pre th:text="${a.price}"></pre>
+    <h3>Beskrivelse:</h3>
+    <pre th:text="${a.description}"></pre>
+    </div>
+    </a>
+</div>
+
+
+
+
+</body>
+</html>

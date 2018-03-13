@@ -14,6 +14,7 @@ public class ActivityController {
     ActivitiesRepo ar;
 
     @RequestMapping(value = "/activitiesOverview", method = RequestMethod.GET)
+
     String index (Model model){
 
         model.addAttribute("activities", ar.readAll());
