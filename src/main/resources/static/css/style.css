@@ -162,3 +162,18 @@ input.search  {
     display: inline-block;
     padding: 12px 16px;
 }
+
+
+
+
+
+
+
+
+
+/* activities */
+
+.activityBox {
+    margin: 25px;
+    border: 2px solid black;
+}
