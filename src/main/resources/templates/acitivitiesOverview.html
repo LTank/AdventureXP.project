@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="layout :: relics">
 
 </head>
 <body>
 
-<div class="container">
-
-    <div class="activityBox" th:each="a : ${activities}">
-        <th> Aktivitet</th>
-        <td th:text="${a.name}"></td>
-        <th>Aldersbegrænsning</th>
-        <td th:text="${a.ageLimit}"></td>
-        <th>Højdebegrænsning</th>
-        <td th:text="${a.heightLimit}"></td>
-        <th>Max tilmeldte</th>
-        <td th:text="${a.maxAttendants}"></td>
-        <th>Pris</th>
-        <td th:text="${a.price}"></td>
-        <th>Beskrivelse</th>
-        <td th:text="${a.description}"></td>
+<div class="activityBox" th:each="a : ${activities}">
+    <a th:href="@{/activitiesOverview(id=${a.id})}" class="clickable"><div>
+    <h3 > Aktivitet:</h3>
+    <pre th:text="${a.name}"></pre>
+    <h3>Aldersbegr&aelig;nsning:</h3>
+    <pre th:text="${a.ageLimit}"></pre>
+    <h3>H&oslash;jdebegr&aelig;nsning:</h3>
+    <pre th:text="${a.heightLimit}"></pre>
+    <h3>Max tilmeldte:</h3>
+    <pre th:text="${a.maxAttendants}"></pre>
+    <h3>Pris:</h3>
+    <pre th:text="${a.price}"></pre>
+    <h3>Beskrivelse:</h3>
+    <pre th:text="${a.description}"></pre>
     </div>
-
+    </a>
 </div>
 
 
