@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: relics">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="activityBox" th:each="a : ${activities}">
+        <th> Aktivitet</th>
+        <td th:text="${a.name}"></td>
+        <th>Aldersbegrænsning</th>
+        <td th:text="${a.ageLimit}"></td>
+        <th>Højdebegrænsning</th>
+        <td th:text="${a.heightLimit}"></td>
+        <th>Max tilmeldte</th>
+        <td th:text="${a.maxAttendants}"></td>
+        <th>Pris</th>
+        <td th:text="${a.price}"></td>
+        <th>Beskrivelse</th>
+        <td th:text="${a.description}"></td>
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>
