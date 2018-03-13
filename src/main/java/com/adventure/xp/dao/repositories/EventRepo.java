@@ -6,15 +6,29 @@ import com.adventure.xp.dao.DButil.DBdelete;
 import com.adventure.xp.dao.DButil.DBread;
 import com.adventure.xp.dao.DButil.DBupdate;
 import com.adventure.xp.models.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class EventRepo implements ICrudRepo {
 
+
+    @Autowired
     private DBcreate dbc;
+
+    @Autowired
     private DBread dbr;
+
+    @Autowired
     private DBupdate dbu;
+
+    @Autowired
     private DBdelete dbd;
+    
     private DBUtil util;
 
     @Override
