@@ -10,6 +10,9 @@
 
 </head>
 <body>
+
+
+
     <div id='calendar'></div>
 
     <!--This is the JQuery, Moment and fullcalender dependencies for the calendar plugin-->
@@ -38,9 +41,21 @@
                 editable: false,
                 weekNumbers: true,
                 eventLimit: true, // allow "more" link when too many events
+
+                // Shows event desciption in the calendar
+                //eventRender: function (event, element, view) {
+                //    element.find('.fc-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">'+event.description+'</span></div>');
+                //},
+
                 events: {
                     url: '/api/event/all'
+                },
+                eventClick: function(event) {
+                    if (event.id) {
+                        alert(event.id);
+                    }
                 }
+
             });
 
         });

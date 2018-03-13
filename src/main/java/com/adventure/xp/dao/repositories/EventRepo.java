@@ -4,7 +4,6 @@ package com.adventure.xp.dao.repositories;
 import com.adventure.xp.dao.DButil.*;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,18 +13,24 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Autowired
     private DBcreate dbc;
+
     @Autowired
     private DBread dbr;
+
+    @Autowired
     private DBupdate dbu;
+
+    @Autowired
     private DBdelete dbd;
-    private Util util;
+    
+    private DBUtil util;
 
 
 
 
     @Override
     public int create(Event e) {
-        return dbc.createEvent(e);
+        return 0;
     }
 
     @Override

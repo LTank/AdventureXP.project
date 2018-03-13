@@ -41,8 +41,8 @@ public class DBread {
     }
 
     public ArrayList<Event> readAllEvents() {
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events");
         ArrayList<Event> events = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events");
         while (sqlRowSet.next()) {
             events.add(new Event(
                     sqlRowSet.getInt("id"),
@@ -56,11 +56,10 @@ public class DBread {
         return events;
     }
 
-    public ArrayList<Activity> readAllActivities() {
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities");
-        ArrayList<Activity> activites = new ArrayList<>();
-        while(sqlRowSet.next()) {
-            activites.add(new Activity(
+    public Activity readActivity(int id) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE product_id='" + id + "'");
+        while (sqlRowSet.next()) {
+            return new Activity(
                     sqlRowSet.getInt("id"),
                     sqlRowSet.getString("name"),
                     sqlRowSet.getInt("age_limit"),
@@ -68,9 +67,26 @@ public class DBread {
                     sqlRowSet.getInt("max_attendants"),
                     sqlRowSet.getDouble("price"),
                     sqlRowSet.getString("calendar_color"),
-                    sqlRowSet.getString("description")
-            ));
+                    sqlRowSet.getString("description"));
         }
-        return activites;
+        return new Activity();
+
+    }
+
+    public ArrayList<Activity> readAllActivities() {
+        ArrayList<Activity> activities = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities");
+        while (sqlRowSet.next()) {
+            activities.add(new Activity(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("name"),
+                    sqlRowSet.getInt("age_limit"),
+                    sqlRowSet.getInt("height_limit"),
+                    sqlRowSet.getInt("max_attendants"),
+                    sqlRowSet.getDouble("price"),
+                    sqlRowSet.getString("calendar_color"),
+                    sqlRowSet.getString("description")));
+        }
+        return activities;
     }
 }
