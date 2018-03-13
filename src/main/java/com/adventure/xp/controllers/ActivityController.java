@@ -13,7 +13,8 @@ public class ActivityController {
     @Autowired
     ActivitiesRepo ar;
 
-    @RequestMapping(path = "/activitiesOverview", method = RequestMethod.GET)
+    @RequestMapping(value = "/activitiesOverview", method = RequestMethod.GET)
+
     String index (Model model){
 
         model.addAttribute("activities", ar.readAll());
