@@ -7,30 +7,41 @@
 <body>
 
 
-<div th:fragment="header">
-    <div class="navbar">
-        <ul>
+<div th:fragment="header" class="navbar">
 
-            <div class="logo" align="center">
-                <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logo.png}"/></a>
-            </div>
+    <!-- logo -->
+    <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logo.png}"/></a>
 
-            <div class="kalender"><a class="btn" href="/" th:href="@{#}">Kalender</a></div>
 
-            <div class="dropdown">
-                <a href="javascript:void(0)" th:href="@{javascript:void(0)}" class="btn">Aktiviteter</a>
-                <div class="dropdown-content">
-                    <a href="/" th:href="@{/}">Gokart</a>
-                    <a href="/" th:href="@{/}">Paintball</a>
-                    <a href="/" th:href="@{/}">Minigolf</a>
-                    <a href="/" th:href="@{/}">Sumo wrestling</a>
-                </div>
-            </div>
-            <input class="search" type="text" placeholder="Search..">
-            <div class="logout"><a class="btn" href="/" th:href="@{/}">logout</a></div>
-        </ul>
-        <hr id="horizontalLine"/>
+<!--Aktiviteter drop down -->
+    <a href="javascript:void(0)" th:href="@{javascript:void(0)}" class="btn akt">Aktiviteter</a>
+
+    <div class="dropdown">
+
+        <div class="dropdown-content">
+            <a href="/" th:href="@{/}">Gokart</a>
+            <a href="/" th:href="@{/}">Paintball</a>
+            <a href="/" th:href="@{/}">Minigolf</a>
+            <a href="/" th:href="@{/}">Sumo wrestling</a>
+        </div>
     </div>
+    <a href="/" th:href="@{/}" class="btn beg">Opret begivenhed</a>
+
+
+
+
+  <!-- search -->
+    <input type="text" placeholder="Search.." class="inputType">
+
+    <!-- search knap -->
+    <a href="/" th:href="@{/}" class="btn search">Søg</a>
+
+
+
+
+        <div class="logout"><a class="btn logout" th:href="@{/logout}">Logout</a></div>
+
+    <hr id="horizontalLine"/>
 </div>
 
 </body>
