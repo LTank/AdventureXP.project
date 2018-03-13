@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head  th:replace="layout :: relics">
+    <title>Adgang nægtet</title>
+</head>
+<body>
+<div class="container" align="center">
+    <div class="starter-template">
+        <h1>403 - Adgang nægtet</h1>
+        <div th:inline="text">Hej [[${#httpServletRequest.remoteUser}]],
+            Du har desværre ikke rettigheder til at se denne side.</div>
+    </div>
+</div>
+</body>
+</html>

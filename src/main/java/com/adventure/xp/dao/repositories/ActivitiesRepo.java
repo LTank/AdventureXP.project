@@ -5,39 +5,51 @@ import com.adventure.xp.dao.DButil.DBcreate;
 import com.adventure.xp.dao.DButil.DBdelete;
 import com.adventure.xp.dao.DButil.DBread;
 import com.adventure.xp.dao.DButil.DBupdate;
+import com.adventure.xp.models.Activity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-public class ActivitiesRepo implements ICrudRepo {
+@Repository
+public class ActivitiesRepo implements ICrudRepo<Activity> {
 
+    @Autowired
     private DBcreate dbc;
+
+    @Autowired
     private DBread dbr;
+
+    @Autowired
     private DBupdate dbu;
+
+    @Autowired
     private DBdelete dbd;
+
     private DBUtil util;
 
     @Override
-    public int create(Object o) {
-        return 0;
+    public int create(Activity a) {
+        return dbc.createActivity(a);
     }
 
     @Override
-    public int read(int id) {
-        return 0;
+    public Activity read(int id) {
+        return dbr.readActivity(id);
     }
 
     @Override
-    public int update(Object o) {
-        return 0;
+    public int update(Activity a) {
+        return dbu.updateActivity(a);
     }
 
     @Override
-    public int delete(Object o) {
-        return 0;
+    public int delete(Activity a) {
+        return dbd.deleteActivity(a);
     }
 
     @Override
-    public ArrayList readAll() {
-        return null;
+    public ArrayList<Activity> readAll() {
+        return dbr.readAllActivities();
     }
 }

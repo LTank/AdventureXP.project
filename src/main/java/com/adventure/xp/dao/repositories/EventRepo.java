@@ -5,13 +5,14 @@ import com.adventure.xp.dao.DButil.DBcreate;
 import com.adventure.xp.dao.DButil.DBdelete;
 import com.adventure.xp.dao.DButil.DBread;
 import com.adventure.xp.dao.DButil.DBupdate;
+import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 @Repository
-public class ReservationRepo implements ICrudRepo {
+public class EventRepo implements ICrudRepo<Event> {
 
     @Autowired
     private DBcreate dbc;
@@ -24,31 +25,31 @@ public class ReservationRepo implements ICrudRepo {
 
     @Autowired
     private DBdelete dbd;
-
+    
     private DBUtil util;
 
     @Override
-    public int create(Object o) {
+    public int create(Event e) {
         return 0;
     }
 
     @Override
-    public int read(int id) {
+    public Event read(int id) {
+        return new Event();
+    }
+
+    @Override
+    public int update(Event e) {
         return 0;
     }
 
     @Override
-    public int update(Object o) {
+    public int delete(Event e) {
         return 0;
     }
 
     @Override
-    public int delete(Object o) {
-        return 0;
-    }
-
-    @Override
-    public ArrayList readAll() {
-        return null;
+    public ArrayList<Event> readAll() {
+        return dbr.readAllEvents();
     }
 }
