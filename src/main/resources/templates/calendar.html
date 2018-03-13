@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
+
+
+</head>
+<body>
+
+
+
+    <div id='calendar'></div>
+
+    <!--This is the JQuery, Moment and fullcalender dependencies for the calendar plugin-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // page is now ready, initialize the calendar...
+
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                defaultView: 'agendaDay',
+                firstDay: '1',
+                displayEventTime: true,
+                themeSystem: 'bootstrap4',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                Editable: true , // can be dragged
+                disableResizing: true , // can't change size
+                editable: false,
+                weekNumbers: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: {
+                    url: '/api/event/all'
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
