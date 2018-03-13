@@ -54,7 +54,7 @@
                         $.ajax({
                             type : "POST",
                             url : "/event",
-                            data : {eventId: event.id}
+                            data : {eventId: event.id},
                             error: function (jqxhr, status, exception) {
                                 alert(status)
                             }
