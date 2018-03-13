@@ -3,6 +3,8 @@
 <head th:fragment="relics">
     <title>Adventure Alley</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -14,17 +16,8 @@
 
 
 <!--Aktiviteter drop down -->
-    <a href="javascript:void(0)" th:href="@{javascript:void(0)}" class="btn akt">Aktiviteter</a>
+    <a href="/activitiesOverview" class="btn akt">Aktiviteter</a>
 
-    <div class="dropdown">
-
-        <div class="dropdown-content">
-            <a href="/" th:href="@{/}">Gokart</a>
-            <a href="/" th:href="@{/}">Paintball</a>
-            <a href="/" th:href="@{/}">Minigolf</a>
-            <a href="/" th:href="@{/}">Sumo wrestling</a>
-        </div>
-    </div>
     <a href="/" th:href="@{/}" class="btn beg">Opret begivenhed</a>
 
 
