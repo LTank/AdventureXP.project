@@ -1,10 +1,6 @@
 package com.adventure.xp.dao.repositories;
 
-import ch.qos.logback.core.db.dialect.DBUtil;
-import com.adventure.xp.dao.DButil.DBcreate;
-import com.adventure.xp.dao.DButil.DBdelete;
-import com.adventure.xp.dao.DButil.DBread;
-import com.adventure.xp.dao.DButil.DBupdate;
+import com.adventure.xp.dao.DButil.*;
 import com.adventure.xp.models.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +22,7 @@ public class ActivitiesRepo implements ICrudRepo<Activity> {
     @Autowired
     private DBdelete dbd;
 
-    private DBUtil util;
+    private Util util;
 
     @Override
     public int create(Activity a) {
