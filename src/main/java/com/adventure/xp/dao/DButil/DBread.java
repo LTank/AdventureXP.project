@@ -34,6 +34,25 @@ public class DBread {
         return events;
     }
 
+    public Event readEventById(int id) {
+        Event event;
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM adventuredb.events WHERE id = " + id);
+        while (sqlRowSet.next()) {
+            event = new Event(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("url"),
+                    sqlRowSet.getDate("date_start"),
+                    sqlRowSet.getDate("date_end"),
+                    sqlRowSet.getString("title"),
+                    sqlRowSet.getString("color"),
+                    sqlRowSet.getNString("description"));
+
+            return event;
+
+        }
+        return null;
+    }
+
     public Activity readActivity(int id) {
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE product_id='" + id + "'");
         while (sqlRowSet.next()) {
