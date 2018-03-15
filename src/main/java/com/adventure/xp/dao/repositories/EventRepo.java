@@ -23,7 +23,7 @@ public class EventRepo implements ICrudRepo<Event> {
     @Autowired
     private DBdelete dbd;
     
-    private DBUtil util;
+    private Util util;
 
 
 

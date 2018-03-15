@@ -1,6 +1,5 @@
 package com.adventure.xp.dao.repositories;
 
-import ch.qos.logback.core.db.dialect.DBUtil;
 import com.adventure.xp.dao.DButil.*;
 import com.adventure.xp.models.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
