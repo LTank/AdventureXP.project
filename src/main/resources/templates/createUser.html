@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="layout :: relics">
+
+</head>
+<body>
+
+<div class="container">
+
+    <table >
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form th:action="@{/createUser}">
+                <input type="submit" value="Opret ny bruger"></input>
+            </form>
+        </div>
+        <tr>
+            <td>ID</td>
+            <td>Brugernavn</td>
+            <td>Rolle</td>
+        </tr>
+        <tr th:each="u: ${users}">
+            <td th:text="${u.getId()}"/>
+            <td th:text="${u.username}"/>
+            <td th:text="${u.role}"/>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/userdelete(userId=${u.id})}">Slet</a></td>
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+</body>
+</html>
