@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class calendarController {
+public class CalendarController {
 
 //    @GetMapping("/calendar")
 //    public String calendar() {
@@ -16,7 +16,7 @@ public class calendarController {
 //    }
 
     @RequestMapping(path = "/calendar", method = RequestMethod.GET)
-    String index (Model model){
+    String calendarShow (Model model){
         return "calendar";
     }
 
