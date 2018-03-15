@@ -20,7 +20,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
+        var csrfParameter = '${_csrf.parameterName}';
+        var csrfToken = '${_csrf.token}';
         $(document).ready(function() {
             // page is now ready, initialize the calendar...
 
@@ -47,19 +49,27 @@
                 //    element.find('.fc-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">'+event.description+'</span></div>');
                 //},
 
-                events: {
+              events: {
                     url: '/api/event/all'
                 },
-                eventClick: function(event) {
+                    /*eventClick: function(event) {
+                    //var jsonParams = {};
+                    //jsonParams['eventId'] = 1;
+                    //jsonParams[csrfParameter] = csrfToken;
+                    var eventId = event.id;
                         $.ajax({
                             type : "POST",
+                            cache: false,
                             url : "/event",
-                            data : {eventId: event.id},
+                            ContentType: application/json,
+                            dataType: text,
+                            //data: jsonParams,
+                            data : {id: eventId},
                             error: function (jqxhr, status, exception) {
                                 alert(status)
                             }
                         })
-                }
+                }*/
             });
         });
     </script>
