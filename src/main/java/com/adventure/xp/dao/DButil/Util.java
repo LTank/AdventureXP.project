@@ -24,4 +24,26 @@ public class Util {
         }
         return id;
     }
+
+    public String getColorByActivity(String activityName){
+
+        // Basic SQL SELECT statement
+        String query = "SELECT calendar_color FROM activities WHERE name=?";
+
+        // Query for Object (String)
+         String color = jdbc.queryForObject(query, new Object[] {activityName}, String.class);
+
+        return color;
+    }
+
+    public String getDescriptionByTitle(String title) {
+        // Basic SQL SELECT statement
+        String query = "SELECT description FROM activities WHERE name=?";
+
+        // Query for Object (String)
+        String description = jdbc.queryForObject(query, new Object[] {title}, String.class);
+
+        return description;
+    }
+
 }

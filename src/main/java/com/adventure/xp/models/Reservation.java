@@ -1,5 +1,6 @@
 package com.adventure.xp.models;
 
+
 import java.util.Date;
 
 public class Reservation {
@@ -7,6 +8,7 @@ public class Reservation {
     private Date date;
     private int numberOfCustomers;
     private int status;
+
 
     public Reservation(int id, Date date, int numberOfCustomers, int status) {
         this.id = id;

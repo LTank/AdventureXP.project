@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+
 // This Class is for update methods only.
 @Repository
 public class DBupdate {
@@ -33,8 +35,8 @@ public class DBupdate {
 
     public int updateEventById(Event event) {
         try {
-            jdbc.update("UPDATE events SET date_start = '" + event.getStart()
-                    + "', date_end = '" + event.getEnd()
+            jdbc.update("UPDATE events SET date_start = '" + new Timestamp(event.getStart().getTime())
+                    + "', date_end = '" + new Timestamp(event.getEnd().getTime())
                     + "', title = + '" + event.getTitle()
                     + "', color = '" + event.getColor()
                     + "', description = '" + event.getDescription()
