@@ -6,8 +6,8 @@
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-
-<div th:replace="fragments/header :: header"/>
+<div class="container-fluid">
+    <div th:replace="fragments/header :: header"/>
 
     <div id='calendar'></div>
 
@@ -45,11 +45,12 @@
                 //    element.find('.fc-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">'+event.description+'</span></div>');
                 //},
 
-              events: {
+                events: {
                     url: '/api/event/all'
                 }
             });
         });
     </script>
+</div>
 </body>
 </html>

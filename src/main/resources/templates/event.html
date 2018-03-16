@@ -3,7 +3,6 @@
 <head>
     <title>Adventure Alley</title>
     <div th:replace="fragments/header :: header-css"/>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -38,10 +37,7 @@
         </table>
         <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Opdater : Opret">
         <!--<button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
-
         <button type="button" class="btn btn-danger">Slet</button>-->
-
-
     </form>
 </div>
 </body>

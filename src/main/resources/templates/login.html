@@ -10,11 +10,12 @@
         <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logoBig.PNG}"/></a>
     </div>
 
+    <div th:if="${param.error}" th:align="center">
+        <div style="color:red">Kodeord er forkert - prøv igen.</div>
+    </div>
+
     <form  th:action="@{/login}" method="post">
-        <div class="container profiles">
-            <div th:if="${param.error}" class="popup">
-                <div style="color:red">Kodeord er forkert - prøv igen.</div>
-            </div>
+        <div class="profiles">
             <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"></a>
             <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
             <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
@@ -40,9 +41,10 @@
                     </div>
 
                     <!-- her er knapperne i popup boxen -->
-                    <a href="#" >Afbryd</a>
-                    <input type="submit" value="Login"/>
-
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn btn-secondary" role="button">Fortryd</a>
+                        <input type="submit" class="btn btn-success" value="Login"/>
+                    </div>
                 </div>
             </div>
         </div>

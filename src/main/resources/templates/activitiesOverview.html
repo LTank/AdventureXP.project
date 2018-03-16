@@ -4,36 +4,38 @@
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-
 <div th:replace="fragments/header :: header"/>
-
 <div class="container">
     <h2>Aktiviteter</h2>
     <div th:each="a : ${activities}">
         <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
-                <table>
-                    <th th:text="${a.name}"></th>
-                    <tr>
-                        <td>Aldersbegrænsning i år: </td>
-                        <td th:text="${a.ageLimit}"></td>
-                    </tr>
-                    <tr>
-                        <td>Min. højde i cm: </td>
-                        <td th:text="${a.heightLimit}"></td>
-                    </tr>
-                    <tr>
-                        <td>Maks. antal deltagere: </td>
-                        <td th:text="${a.maxAttendants}"></td>
-                    </tr>
-                    <tr>
-                        <td>Pris: </td>
-                        <td th:text="${a.price}"></td>
-                    </tr>
-                    <tr>
-                        <td>Beskrivelse: </td>
-                        <td th:text="${a.description}"></td>
-                    </tr>
-                </table>
+            <table>
+                <thead>
+                <th th:text="${a.name}"></th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Aldersbegrænsning i år: </td>
+                    <td th:text="${a.ageLimit}"></td>
+                </tr>
+                <tr>
+                    <td>Min. højde i cm: </td>
+                    <td th:text="${a.heightLimit}"></td>
+                </tr>
+                <tr>
+                    <td>Maks. antal deltagere: </td>
+                    <td th:text="${a.maxAttendants}"></td>
+                </tr>
+                <tr>
+                    <td>Pris: </td>
+                    <td th:text="${a.price}"></td>
+                </tr>
+                <tr>
+                    <td>Beskrivelse: </td>
+                    <td th:text="${a.description}"></td>
+                </tr>
+                </tbody>
+            </table>
         </a>
     </div>
     <br/>

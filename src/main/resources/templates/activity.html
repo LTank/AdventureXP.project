@@ -40,11 +40,11 @@
                 <td><textarea rows="5" cols="50" maxlength="150" type="text" th:field="*{description}" placeholder="F.eks. sjovest for 6 eller flere, massere af action"></textarea></td>
             </tr>
         </table>
-        <input class="btn btn-success" role="button" type="submit" value="GEM" />
+        <input class="btn btn-success" role="button" type="submit" value="Gem" />
         <form class="delete" th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
             <input class="update" type="hidden" th:field="*{id}" placeholder="name"/>
-            <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="SLET" />
-            <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="FORTRYD" />
+            <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="Slet" />
+            <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="Fortryd" />
         </form>
     </form>
 </div>
