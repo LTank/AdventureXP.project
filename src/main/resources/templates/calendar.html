@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Calendar</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
-
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
 </head>
 <body>
@@ -49,13 +50,7 @@
 
                 events: {
                     url: '/api/event/all'
-                },
-                eventClick: function(event) {
-                    if (event.id) {
-                        alert(event.id);
-                    }
                 }
-
             });
 
         });

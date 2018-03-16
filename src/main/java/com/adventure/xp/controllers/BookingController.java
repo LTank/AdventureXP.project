@@ -1,12 +1,10 @@
 package com.adventure.xp.controllers;
 
-import com.adventure.xp.dao.DButil.Util;
+
 import com.adventure.xp.dao.repositories.ActivitiesRepo;
 import com.adventure.xp.dao.repositories.EventRepo;
-import com.adventure.xp.dao.repositories.ReservationRepo;
 import com.adventure.xp.models.Event;
 import com.adventure.xp.models.EventForm;
-import com.adventure.xp.models.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,50 +21,61 @@ public class BookingController {
 
 
     @Autowired
-    private ReservationRepo reservationRepo;
-
-    @Autowired
     private EventRepo eventRepo;
 
     @Autowired
     private ActivitiesRepo activityRepo;
 
 
-    @RequestMapping(value="/booking", method=RequestMethod.GET)
+    @RequestMapping(value="/event", method= RequestMethod.GET)
     public String eventForm(@RequestParam(name="id", required = false) Integer name, Model model){
         model.addAttribute("activities", activityRepo.readAll());
         EventForm eventForm = new EventForm();
         if(name!=null){
+            model.addAttribute("id", name);
             Event event = eventRepo.read(name);
             eventForm.setActivity(event.getTitle());
             eventForm.setStartDate(event.getStart());
             eventForm.setEndDate(event.getEnd());
+        } else {
+            model.addAttribute("id", 0);
         }
         model.addAttribute("eventForm", eventForm);
-        return "booking";
+        return "event";
     }
 
 
-
-
     @RequestMapping(value="/createEvent", method=RequestMethod.POST)
-    public String createEvent(@ModelAttribute EventForm eventForm, Model model){
+    public String createEvent(@ModelAttribute EventForm eventForm, @RequestParam String method, @RequestParam int id, Model model){
+        System.out.println(method);
+        System.out.println(id);
+        if(method.equals("Create")){
+            Event event = createEventFromForm(eventForm);
+
+            eventRepo.create(event);
+
+            model.addAttribute("eventForm", eventForm);
+        }
+        if(method.equals("Update")){
 
 
-        System.out.println("Woop Woop we created a Event!!");
+            Event event = eventRepo.read(id);
+            event.setStart(eventForm.getStartDate());
+            event.setEnd(eventForm.getEndDate());
+            event.setTitle(eventForm.getActivity());
+            event.setColor(activityRepo.getColorByTitle(event.getTitle()));
+            event.setDescription(activityRepo.getDescriptionByTitle(event.getTitle()));
 
-        Event event = createEventFromForm(eventForm);
-        eventRepo.create(event);
+            eventRepo.update(event);
+        }
 
-
-        model.addAttribute("eventForm", eventForm);
-        return "calendar";
+        return "redirect:/calendar";
     }
 
 
     private Event createEventFromForm(EventForm eventForm){
         int eventId =  0; // Event gets an ID when entry in database
-        String url = "booking"; // The url gonna get the database ID concatenated
+        String url = "/event"; // The url gonna get the database ID concatenated
 
         Date start = eventForm.getStartDate();
         Date end = eventForm.getEndDate();

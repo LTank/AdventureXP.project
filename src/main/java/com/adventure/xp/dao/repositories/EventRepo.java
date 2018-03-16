@@ -30,7 +30,7 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Override
     public int create(Event e) {
-        return 0;
+        return dbc.createEvent(e);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Override
     public int update(Event e) {
-        return 0;
+        return dbu.updateEvent(e);
     }
 
     @Override

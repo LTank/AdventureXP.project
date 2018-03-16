@@ -20,7 +20,6 @@ public class DBread {
     @Autowired
     public DBread(JdbcTemplate jdbc){
         this.jdbc = jdbc;
-        System.out.println("Hej Anders");
     }
 
     public Event readEvent(int id){

@@ -4,7 +4,8 @@
 <head th:fragment="relics">
     <title>Adventure Alley</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -14,7 +15,7 @@
     </div>
     <div class="content">
         <h1>Create/Edit Event:</h1>
-        <form th:action="@{/createEvent}" method="post" th:object="${eventForm}">
+        <form th:action="@{/createEvent(id=${id},method=(${eventForm.activity} ?  'Update' : 'Create'))}" method="post" th:object="${eventForm}">
             <select name="activity" th:field="*{activity}">
                 <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
             </select>
@@ -23,10 +24,11 @@
             <label for="endDate">End Date:</label>
             <input type="datetime-local" id="endDate" th:field="*{endDate}">
 
-            <button type="button" class="btn btn-success">Gem</button>
-            <button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
 
-            <button type="button" class="btn btn-danger">Slet</button>
+            <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Update : Submit">
+            <!--<button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
+
+            <button type="button" class="btn btn-danger">Slet</button>-->
 
 
         </form>
