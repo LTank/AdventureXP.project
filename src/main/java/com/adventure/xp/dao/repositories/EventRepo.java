@@ -40,7 +40,7 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Override
     public int update(Event e) {
-        return dbu.updateEvent(e);
+        return dbu.updateEventById(e);
     }
 
     @Override
