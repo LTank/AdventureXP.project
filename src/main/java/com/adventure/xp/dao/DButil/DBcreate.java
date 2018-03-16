@@ -1,9 +1,12 @@
 package com.adventure.xp.dao.DButil;
 
 import com.adventure.xp.models.Activity;
+import com.adventure.xp.models.User;
+import com.adventure.xp.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 // This Class is for create methods only.
@@ -13,9 +16,28 @@ public class DBcreate {
     @Autowired
     private JdbcTemplate jdbc;
 
-    //example of a create method.
-    public int createUser (Object o) {
-        return 0;
+    // Creating a new user
+    public int createUser (User u) {
+        // Encryption of our users chosen password
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        // New users should always be enabled
+        u.setEnabled(1);
+
+        try {
+            jdbc.update("INSERT INTO users(username, password, enabled) " +
+                    "VALUES('" + u.getUsername() + "','"
+                    + passwordEncoder.encode(u.getPassword()) + "','"
+                    + u.getEnabled() + "')");
+            jdbc.update("INSERT INTO user_roles(username, role) " +
+                    "VALUES('" + u.getUsername() + "','"
+                    + u.getRole() + "')");
+            System.out.println("User created");
+            return 1; // If success
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // If error
     }
 
     public int createActivity(Activity a) {

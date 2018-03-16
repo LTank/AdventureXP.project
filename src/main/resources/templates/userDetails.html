@@ -7,31 +7,24 @@
 <body>
 
 <div class="container">
-
     <table >
-        <!-- Creating a new user is only a job for administrators! -->
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <form th:action="@{/createUser}">
-                <input type="submit" value="Opret ny bruger"></input>
-            </form>
-        </div>
         <tr>
             <td>ID</td>
-            <td>Brugernavn</td>
-            <td>Rolle</td>
+            <td th:text="${u.id}">ID</td>
         </tr>
-        <tr th:each="u: ${users}">
-            <td th:text="${u.id}"/>
-            <td th:text="${u.username}"/>
-            <td th:text="${u.role}"/>
-            <td><a th:href="@{/userDetails(userId=${u.id})}">Detaljer</a></td>
+        <tr>
+            <td>Brugernavn</td>
+            <td th:text="${u.username}">Brugernavn</td>
+        </tr>
+        <tr>
+            <td>Rolle</td>
+            <td th:text="${u.role}">Rolle</td>
+        </tr>
+        <tr>
+            <td>Kodeord</td>
+            <td th:text="${u.password}" type="password" >Kodeord</td>
         </tr>
     </table>
-
 </div>
-
-
-
-
 </body>
 </html>

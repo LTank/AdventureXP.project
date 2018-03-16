@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layout :: relics">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
 </head>
 <body>
-
 <div class="container">
-
-    <table >
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <form th:action="@{/createUser}">
-                <input type="submit" value="Opret ny bruger"></input>
-            </form>
-        </div>
-        <tr>
-            <td>ID</td>
-            <td>Brugernavn</td>
-            <td>Rolle</td>
-        </tr>
-        <tr th:each="u: ${users}">
-            <td th:text="${u.getId()}"/>
-            <td th:text="${u.username}"/>
-            <td th:text="${u.role}"/>
-            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/userdelete(userId=${u.id})}">Slet</a></td>
-        </tr>
-    </table>
-
+    <form th:action="@{/createUser}" method="post" th:object="${newUser}">
+        <table>
+            <tr>
+                <td>Brugernavn:</td>
+                <td><input type="text" th:field="*{username}"/></td>
+            </tr>
+            <tr>
+                <td>Kodeord:</td>
+                <td><input type="text" th:field="*{password}"/></td>
+            </tr>
+            <tr>
+                <td>Rolle:</td>
+                <td>
+                    <select th:field="*{role}">
+                        <option value="ROLE_USER">Bruger</option>
+                        <option value="ROLE_ADMIN">Administrator</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Opret bruger"/>
+    </form>
 </div>
 
 
