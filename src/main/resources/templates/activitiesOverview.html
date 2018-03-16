@@ -9,11 +9,10 @@
 
 <div class="container">
     <h2>Aktiviteter</h2>
-    <div class="panel panel-default" th:each="a : ${activities}">
+    <div th:each="a : ${activities}">
         <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
-            <div class="panel-heading"><td th:text="${a.name}"></td> </br> </div>
-            <div class="panel-body">
                 <table>
+                    <th th:text="${a.name}"></th>
                     <tr>
                         <td>Aldersbegrænsning i år: </td>
                         <td th:text="${a.ageLimit}"></td>
@@ -35,9 +34,9 @@
                         <td th:text="${a.description}"></td>
                     </tr>
                 </table>
-            </div>
         </a>
     </div>
+    <br/>
     <a class="btn btn-primary" role="button" th:href="@{/createActivity}">Opret ny aktivitet</a>
 </div>
 </body>
