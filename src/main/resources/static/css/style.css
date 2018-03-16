@@ -178,3 +178,10 @@ input[type=text], input[type=password] {
     top: 12px;
     left: 870px;
 }
+
+textarea.update {
+    width: 30%;
+    margin: auto;
+    height: 100px;
+    resize: none;
+}

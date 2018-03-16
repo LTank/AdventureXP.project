@@ -24,7 +24,7 @@ public class DBupdate {
                     + "', max_attendants='" + a.getMaxAttendants()
                     + "', calendar_color='" + a.getCalendarColor()
                     + "', description='" + a.getDescription()
-                    + "' WHERE id = "+a.getId());
+                    + "' WHERE id = " + a.getId());
             System.out.println("Updated activity");
             return 1; // If success
         } catch (Exception e){
