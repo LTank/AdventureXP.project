@@ -33,20 +33,19 @@ public class DBupdate {
         return -1; // If error
     }
 
-    public int updateEvent(Event e) {
+    public int updateEventById(Event event) {
         try {
-            jdbc.update("UPDATE events SET url='" + e.getUrl()
-                    + "', date_start='" + new Timestamp(e.getStart().getTime())
-                    + "', date_end='" + new Timestamp(e.getEnd().getTime())
-                    + "', title='" + e.getTitle()
-                    + "', color='" + e.getColor()
-                    + "', description='" + e.getDescription()
-                    + "' WHERE id = "+e.getId());
-            System.out.println("Updated Event");
-            return 1; // If success
-        } catch (Exception ex){
-            ex.printStackTrace();
+            jdbc.update("UPDATE events SET date_start = '" + event.getStart()
+                    + "', date_end = '" + event.getEnd()
+                    + "', title = + '" + event.getTitle()
+                    + "', color = '" + event.getColor()
+                    + "', description = '" + event.getDescription()
+                    + "'WHERE id = " + event.getId());
+            return 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return -1; // If error
+        return -1;
     }
 }
