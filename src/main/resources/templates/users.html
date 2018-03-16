@@ -9,12 +9,6 @@
 <div class="container">
 
     <table >
-        <!-- Creating a new user is only a job for administrators! -->
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <form th:action="@{/createUser}">
-                <input type="submit" value="Opret ny bruger"></input>
-            </form>
-        </div>
         <tr>
             <td>ID</td>
             <td>Brugernavn</td>
@@ -27,6 +21,13 @@
             <td><a th:href="@{/userDetails(userId=${u.id})}">Detaljer</a></td>
         </tr>
     </table>
+
+    <!-- Creating a new user is only a job for administrators! -->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <form th:action="@{/createUser}">
+            <input type="submit" value="Opret ny bruger"></input>
+        </form>
+    </div>
 
 </div>
 
