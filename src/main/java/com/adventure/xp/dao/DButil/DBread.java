@@ -54,7 +54,7 @@ public class DBread {
     }
 
     public Activity readActivity(int id) {
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE product_id='" + id + "'");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE id='" + id + "'");
         while (sqlRowSet.next()) {
             return new Activity(
                     sqlRowSet.getInt("id"),
