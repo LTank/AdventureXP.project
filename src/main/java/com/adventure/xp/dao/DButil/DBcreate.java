@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
-
+import com.adventure.xp.models.Event;
+import java.sql.Timestamp;
 // This Class is for create methods only.
 @Repository
 public class DBcreate {
 
     @Autowired
     private JdbcTemplate jdbc;
+
 
     //example of a create method.
     public int createUser (Object o) {
@@ -35,4 +37,16 @@ public class DBcreate {
         }
         return -1; // If error
     }
+
+    public int createEvent (Event e) {
+        String query = "INSERT INTO events (url, date_start, date_end, title, color, description) " +
+                        "VALUES (?, ?, ?, ?, ?, ?);";
+
+        return jdbc.update(query, new Object[] {e.getUrl(), new Timestamp(e.getStart().getTime()), new Timestamp(e.getEnd().getTime()), e.getTitle(), e.getColor(), e.getDescription()});
+    }
+
+
+
+
+
 }

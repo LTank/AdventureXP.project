@@ -1,6 +1,5 @@
 package com.adventure.xp.dao.DButil;
 
-import com.adventure.xp.dao.repositories.ActivitiesRepo;
 import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,31 @@ import java.util.ArrayList;
 @Repository
 public class DBread {
 
-    @Autowired
     private JdbcTemplate jdbc;
+
     private SqlRowSet sqlRowSet;
+
+    @Autowired
+    public DBread(JdbcTemplate jdbc){
+        this.jdbc = jdbc;
+    }
+
+    public Event readEvent(int id){
+        Event event;
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events WHERE id = " + id);
+        if(sqlRowSet.next()){
+            event = new Event(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("url")+"?id="+sqlRowSet.getInt("id"),
+                    sqlRowSet.getTimestamp("date_start"),
+                    sqlRowSet.getTimestamp("date_end"),
+                    sqlRowSet.getString("title"),
+                    sqlRowSet.getString("color"),
+                    sqlRowSet.getString("description"));
+            return event;
+        }
+        return null;
+    }
 
     public ArrayList<Event> readAllEvents() {
         ArrayList<Event> events = new ArrayList<>();
@@ -24,9 +45,9 @@ public class DBread {
         while (sqlRowSet.next()) {
             events.add(new Event(
                     sqlRowSet.getInt("id"),
-                    sqlRowSet.getString("url"),
-                    sqlRowSet.getDate("date_start"),
-                    sqlRowSet.getDate("date_end"),
+                    sqlRowSet.getString("url")+"?id="+sqlRowSet.getInt("id"),
+                    sqlRowSet.getTimestamp("date_start"),
+                    sqlRowSet.getTimestamp("date_end"),
                     sqlRowSet.getString("title"),
                     sqlRowSet.getString("color"),
                     sqlRowSet.getString("description")));
