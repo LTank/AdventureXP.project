@@ -18,17 +18,14 @@ import java.util.Date;
 @Controller
 public class BookingController {
 
-
-
     @Autowired
     private EventRepo eventRepo;
 
     @Autowired
     private ActivitiesRepo activityRepo;
 
-
     @RequestMapping(value="/event", method= RequestMethod.GET)
-    public String eventForm(@RequestParam(name="id", required = false) Integer name, Model model){
+    public String eventForm(@RequestParam(name="id", required = false) Integer name, Model model) {
         model.addAttribute("activities", activityRepo.readAll());
         EventForm eventForm = new EventForm();
         if(name!=null){
@@ -44,9 +41,8 @@ public class BookingController {
         return "event";
     }
 
-
     @RequestMapping(value="/createEvent", method=RequestMethod.POST)
-    public String createEvent(@ModelAttribute EventForm eventForm, @RequestParam String method, @RequestParam int id, Model model){
+    public String createEvent(@ModelAttribute EventForm eventForm, @RequestParam String method, @RequestParam int id, Model model) {
         System.out.println(method);
         System.out.println(id);
         if(method.equals("Create")){
@@ -57,8 +53,6 @@ public class BookingController {
             model.addAttribute("eventForm", eventForm);
         }
         if(method.equals("Update")){
-
-
             Event event = eventRepo.read(id);
             event.setStart(eventForm.getStartDate());
             event.setEnd(eventForm.getEndDate());
@@ -73,7 +67,7 @@ public class BookingController {
     }
 
 
-    private Event createEventFromForm(EventForm eventForm){
+    private Event createEventFromForm(EventForm eventForm) {
         int eventId =  0; // Event gets an ID when entry in database
         String url = "/event"; // The url gonna get the database ID concatenated
 

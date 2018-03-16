@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="layout :: relics">
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 
-<div th:replace="layout::header"></div>
-
+<div th:replace="fragments/header :: header"/>
 
 <div class="container">
-
+    <h2>Aktiviteter</h2>
     <div class="panel panel-default" th:each="a : ${activities}">
         <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
             <div class="panel-heading"><td th:text="${a.name}"></td> </br> </div>
             <div class="panel-body">
-                <th>Aldersbegrænsning</th>
-                <td th:text="${a.ageLimit}"></td> </br>
-                <th>Højdebegrænsning</th>
-                <td th:text="${a.heightLimit}"></td> </br>
-                <th>Max tilmeldte</th>
-                <td th:text="${a.maxAttendants}"></td> </br>
-                <th>Pris</th>
-                <td th:text="${a.price}"></td> </br>
-                <th>Beskrivelse</th>
-                <td th:text="${a.description}"></td>
+                <table>
+                    <tr>
+                        <td>Aldersbegrænsning i år: </td>
+                        <td th:text="${a.ageLimit}"></td>
+                    </tr>
+                    <tr>
+                        <td>Min. højde i cm: </td>
+                        <td th:text="${a.heightLimit}"></td>
+                    </tr>
+                    <tr>
+                        <td>Maks. antal deltagere: </td>
+                        <td th:text="${a.maxAttendants}"></td>
+                    </tr>
+                    <tr>
+                        <td>Pris: </td>
+                        <td th:text="${a.price}"></td>
+                    </tr>
+                    <tr>
+                        <td>Beskrivelse: </td>
+                        <td th:text="${a.description}"></td>
+                    </tr>
+                </table>
             </div>
         </a>
     </div>
-
-    <a class="create" th:href="@{/createActivity}">create</a>
-
+    <a class="btn btn-primary" role="button" th:href="@{/createActivity}">Opret ny aktivitet</a>
 </div>
-
-
-
-
-
-
-
 </body>
 </html>
