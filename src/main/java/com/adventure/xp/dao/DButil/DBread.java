@@ -2,6 +2,7 @@ package com.adventure.xp.dao.DButil;
 
 import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
+import com.adventure.xp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -106,5 +107,39 @@ public class DBread {
                     sqlRowSet.getString("description")));
         }
         return activities;
+    }
+
+    public User readUser(int id) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role , users.enabled " +
+                "FROM users " +
+                "INNER JOIN user_roles " +
+                "ON users.username = user_roles.username " +
+                "WHERE id ='" + id + "'");
+        while (sqlRowSet.next()) {
+            return new User(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("username"),
+                    sqlRowSet.getString("password"),
+                    sqlRowSet.getString("role"),
+                    sqlRowSet.getInt("enabled"));
+        }
+        return new User();
+    }
+
+    public ArrayList<User> readAllUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role , users.enabled " +
+                "FROM users " +
+                "INNER JOIN user_roles " +
+                "ON users.username = user_roles.username");
+        while (sqlRowSet.next()) {
+            users.add(new User(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("username"),
+                    sqlRowSet.getString("password"),
+                    sqlRowSet.getString("role"),
+                    sqlRowSet.getInt("enabled")));
+        }
+        return users;
     }
 }
