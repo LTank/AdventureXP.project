@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<head th:fragment="relics">
+<head>
     <title>Adventure Alley</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
+    <div th:replace="fragments/header :: header-css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div th:replace="layout::header"></div>
-    <div class="content">
-        <h1>Create/Edit Event:</h1>
-        <form th:action="@{/createEvent(id=${id},method=(${eventForm.activity} ?  'Update' : 'Create'))}" method="post" th:object="${eventForm}">
-            <select name="activity" th:field="*{activity}">
-                <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
-            </select>
-            <label for="startDate">Start Date:</label>
-            <input type="datetime-local" id="startDate" th:field="*{startDate}">
-            <label for="endDate">End Date:</label>
-            <input type="datetime-local" id="endDate" th:field="*{endDate}">
 
+<div th:replace="fragments/header :: header"/>
 
-            <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Update : Submit">
-            <!--<button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
-
-            <button type="button" class="btn btn-danger">Slet</button>-->
-
-
-        </form>
-    </div>
+<div class="container">
+    <h2>Event detaljer</h2>
+    <form th:action="@{/createEvent(id=${id},method=(${eventForm.activity} ?  'Update' : 'Create'))}" method="post" th:object="${eventForm}">
+        <table>
+            <tr>
+                <td>Aktivitetstype: </td>
+                <td>
+                    <select name="activity" th:field="*{activity}">
+                        <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Start dato og tidspunkt: </td>
+                <td>
+                    <input type="datetime-local" id="startDate" th:field="*{startDate}">
+                </td>
+            </tr>
+            <tr>
+                <td>Slut dato og tidspunkt: </td>
+                <td>
+                    <input type="datetime-local" id="endDate" th:field="*{endDate}">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Opdater : Opret">
+        <!--<button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
+        <button type="button" class="btn btn-danger">Slet</button>-->
+    </form>
+</div>
 </body>
 </html>

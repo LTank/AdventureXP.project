@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head th:replace="layout :: relics">
-    <title>Logud side</title>
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log ud side</title>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 <div class="container" th:align="center">
-    <h2 sec:authorize="isAuthenticated()">Er du sikker på, at du vil logge ud?</h2>
-    <h2 sec:authorize="isAnonymous()">Du er nu logged ud.</h2>
+    <h2>Du er nu logged ud.</h2>
 </div>
 
 </body>

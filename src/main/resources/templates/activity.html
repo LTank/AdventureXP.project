@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Activities</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+    <h2>Aktivitets detaljer</h2>
+    <form th:action="@{/activity}" method="post" th:object="${activity}">
+        <table>
+            <tr>
+                <td><input type="hidden" th:field="*{id}" placeholder="id"/></td>
+            </tr>
+            <tr>
+                <td>Navn: </td>
+                <td><input type="text" th:field="*{name}" placeholder="Navn"/></td>
+            </tr>
+            <tr>
+                <td>Aldersbegrænsning i år: </td>
+                <td><input type="text" th:field="*{ageLimit}" placeholder="F.eks. 12"/></td>
+            </tr>
+            <tr>
+                <td>Minimums højde i cm: </td>
+                <td><input type="text" th:field="*{heightLimit}" placeholder="F.eks. 70 (70CM)"/></td>
+            </tr>
+            <tr>
+                <td>Maks. antal deltagere</td>
+                <td><input type="text" th:field="*{maxAttendants}" placeholder="F.eks. 10"/></td>
+            </tr>
+            <tr>
+                <td>Pris i kr: </td>
+                <td><input type="text" th:field="*{price}" placeholder="F.eks. 100"/></td>
+            </tr>
+            <tr>
+                <td>Beskrivelse: </td>
+                <td><textarea rows="5" cols="50" maxlength="150" type="text" th:field="*{description}" placeholder="F.eks. sjovest for 6 eller flere, massere af action"></textarea></td>
+            </tr>
+        </table>
+        <input class="btn btn-success" role="button" type="submit" value="Gem" />
+        <form class="delete" th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
+            <input class="update" type="hidden" th:field="*{id}" placeholder="name"/>
+            <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="Slet" />
+            <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="Fortryd" />
+        </form>
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -21,34 +21,28 @@ public class ActivityController {
     Util util;
 
     @RequestMapping(value = "/activitiesOverview", method = RequestMethod.GET)
-
-    String index (Model model){
-
+    String index (Model model) {
         model.addAttribute("activities", ar.readAll());
         return "activitiesOverview";
     }
 
     @RequestMapping (value = "/activityView", method = RequestMethod.GET)
-
-    String editIndex (@RequestParam("activityId") int activityId, Model model){
+    String editIndex (@RequestParam("activityId") int activityId, Model model) {
         boolean create = false;
         model.addAttribute("activity", ar.read(activityId));
         model.addAttribute("create", create);
-        return "activitiesEdit";
+        return "activity";
     }
 
     @RequestMapping (value = "/deleteActivity", method = RequestMethod.POST)
-
-    String deleteActivity (@ModelAttribute("activity") Activity a){
+    String deleteActivity (@ModelAttribute("activity") Activity a) {
         System.out.println(a);
         ar.delete(a);
         return "redirect:/activitiesOverview";
     }
 
-    @RequestMapping (value = "/editActivity", method = RequestMethod.POST)
-
-    String updateActivity (@ModelAttribute("activity") Activity a){
-
+    @RequestMapping (value = "/activity", method = RequestMethod.POST)
+    String updateActivity (@ModelAttribute("activity") Activity a) {
         if (a.getId() == 0 ) {
             ar.create(a);
             int id = util.readLastInsertID();
@@ -59,13 +53,10 @@ public class ActivityController {
     }
 
     @RequestMapping (value = "/createActivity", method = RequestMethod.GET)
-
-    String createActivity (@ModelAttribute("activity") Activity a, Model model){
-
+    String createActivity (@ModelAttribute("activity") Activity a, Model model) {
         boolean create = true;
         model.addAttribute("create", create);
-
-        return "activitiesEdit";
+        return "activity";
     }
 
 
