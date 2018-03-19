@@ -31,15 +31,16 @@
 
         <!-- Search in the center -->
         <div class="collapse navbar-collapse justify-content-center">
-            <form class="form-inline" role="search">
-                <input type="text" class="form-control">
-                <button type="submit" class="btn btn-secondary">Søg</button>
-            </form>
+
         </div>
 
-        <!-- Logout to the right -->
+        <!-- Logout and search to the right -->
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+                <form class="form-inline" role="search">
+                    <input type="text" class="form-control">
+                    <button type="submit" class="btn btn-secondary">Søg</button>
+                </form>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/logout}">Log ud</a>
                 </li>
