@@ -4,12 +4,11 @@
     <title>Login side</title>
     <div th:replace="fragments/header :: header-css"/>
 </head>
-<body>
+<body class="loginBody">
 <div class="container">
     <div class="logoBig">
         <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logoBig.PNG}"/></a>
     </div>
-
     <div th:if="${param.error}" th:align="center">
         <div style="color:red">Kodeord er forkert - prøv igen.</div>
     </div>
