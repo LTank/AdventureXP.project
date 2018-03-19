@@ -80,4 +80,10 @@ public class BookingController {
 
         return new Event(eventId, url, start, end, title, color, description);
     }
+
+    @RequestMapping (value = "/deleteEvent", method = RequestMethod.GET)
+    String deleteEvent (@RequestParam("id") String id, Model model) {
+        eventRepo.delete(Integer.parseInt(id));
+        return "redirect:/calendar";
+    }
 }

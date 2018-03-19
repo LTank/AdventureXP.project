@@ -35,9 +35,10 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Opdater : Opret">
-        <!--<button type="button" class="btn" onclick="window.location.href='/calendar'">Tilbage</button>
-        <button type="button" class="btn btn-danger">Slet</button>-->
+        <div class="btn-group" role="group">
+            <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Opdater : Opret">
+            <a th:if="${id != 0}" th:href="@{/deleteEvent(id=${id})}" class="btn btn-danger">Slet</a>
+        </div>
     </form>
 </div>
 </body>

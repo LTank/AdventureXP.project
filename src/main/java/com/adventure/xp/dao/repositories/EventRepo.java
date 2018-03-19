@@ -44,8 +44,8 @@ public class EventRepo implements ICrudRepo<Event> {
     }
 
     @Override
-    public int delete(Event e) {
-        return 0;
+    public int delete(int id) {
+        return dbd.deleteEvent(id);
     }
 
     @Override

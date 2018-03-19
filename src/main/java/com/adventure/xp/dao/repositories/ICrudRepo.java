@@ -10,7 +10,7 @@ public interface ICrudRepo<T> {
 
     public int update (T t);
 
-    public int delete (T t);
+    public int delete (int id);
 
     public ArrayList<T> readAll();
 
