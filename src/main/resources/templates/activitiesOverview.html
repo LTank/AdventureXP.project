@@ -7,23 +7,22 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container">
     <h2>Aktiviteter</h2>
-    <ul></ul>
     <div class="row">
-    <div  class="card ml-3 mb-3" style="width: 22rem;" th:each="a : ${activities}" >
+        <div class="card ml-3 mb-2 "  style="width: 22rem;" th:each="a : ${activities}">
                 <h5 class="card-header text-white bg-primary" th:text="${a.name}"></h5>
                 <div class="card-body">
-                    <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
                     <p class="card-text" >Aldersbegrænsning i år: <span th:text="${a.ageLimit}"></span></p>
                     <p class="card-text">Min. højde i cm: <span th:text="${a.heightLimit}"></span></p>
                     <p class="card-text">Maks. antal deltagere: <span th:text="${a.maxAttendants}"></span></p>
                     <p class="card-text">Pris: <span th:text="${a.price}"></span></p>
-                    <p class="card-text">Beskrivelse: <span th:text="${a.description}"></span></p>
+                    <p class="card-text font-italic" th:text="${a.description}"></p>
                 </div>
-        </a>
+                <div class="card-body">
+                    <a class="btn btn-info m-b-xs" th:href="@{/activityView(activityId=${a.id})}">Update</a>
+                </div>
+
+        </div>
     </div>
-    </div>
-    <br/>
-    <a class="btn btn-primary" role="button" th:href="@{/createActivity}">Opret ny aktivitet</a>
 </div>
 </body>
 </html>
