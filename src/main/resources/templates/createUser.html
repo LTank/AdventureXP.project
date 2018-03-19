@@ -9,12 +9,25 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-
+    <table>
+        <tr>
+            <td>ID</td>
+            <td th:text="${u.id}">ID</td>
+        </tr>
+        <tr>
+            <td>Brugernavn</td>
+            <td th:text="${u.username}">Brugernavn</td>
+        </tr>
+        <tr>
+            <td>Rolle</td>
+            <td th:text="${u.role}">Rolle</td>
+        </tr>
+        <tr>
+            <td>Kodeord</td>
+            <td th:text="${u.password}" type="password" >Kodeord</td>
+        </tr>
+    </table>
 </div>
-
-
-
-
 
 </body>
 </html>
