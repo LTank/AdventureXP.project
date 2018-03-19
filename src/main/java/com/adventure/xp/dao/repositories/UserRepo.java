@@ -38,7 +38,7 @@ public class UserRepo implements ICrudRepo<User>{
 
     @Override
     public User read (int id) {
-        return new User();
+        return dbr.readUser(id);
     }
 
     @Override
@@ -53,6 +53,6 @@ public class UserRepo implements ICrudRepo<User>{
 
     @Override
     public ArrayList readAll() {
-        return null;
+        return dbr.readAllUsers();
     }
 }
