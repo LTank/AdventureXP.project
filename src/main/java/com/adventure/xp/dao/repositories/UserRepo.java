@@ -47,7 +47,7 @@ public class UserRepo implements ICrudRepo<User>{
     }
 
     @Override
-    public int delete(User u) {
+    public int delete(int id) {
         return 0;
     }
 

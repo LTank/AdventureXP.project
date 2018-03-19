@@ -43,7 +43,7 @@ public class ReservationRepo implements ICrudRepo {
     }
 
     @Override
-    public int delete(Object o) {
+    public int delete(int id) {
         return 0;
     }
 

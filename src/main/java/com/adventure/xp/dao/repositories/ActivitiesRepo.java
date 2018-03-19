@@ -41,8 +41,8 @@ public class ActivitiesRepo implements ICrudRepo<Activity> {
     }
 
     @Override
-    public int delete(Activity a) {
-        return dbd.deleteActivity(a);
+    public int delete(int id) {
+        return dbd.deleteActivity(id);
     }
 
     @Override
