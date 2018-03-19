@@ -7,8 +7,9 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container">
     <h2>Aktiviteter</h2>
-    <div th:each="a : ${activities}">
-        <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
+    <ul></ul>
+    <div  class="card" th:each="a : ${activities}">
+            <a class="clickable" th:href="@{/activityView(activityId=${a.id})}">
             <table>
                 <thead>
                 <th th:text="${a.name}"></th>

@@ -39,6 +39,10 @@
                 <td>Beskrivelse: </td>
                 <td><textarea rows="5" cols="50" maxlength="150" type="text" th:field="*{description}" placeholder="F.eks. sjovest for 6 eller flere, massere af action"></textarea></td>
             </tr>
+            <tr>
+                <td>Farve: </td>
+                <td><input type="text" th:field="*{}" placeholder="F.eks. 100"/></td>
+            </tr>
         </table>
         <input class="btn btn-success" role="button" type="submit" value="Gem" />
         <form class="delete" th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
