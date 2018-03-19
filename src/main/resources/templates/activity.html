@@ -41,20 +41,18 @@
             </tr>
             <tr>
                 <td>Farve: </td>
-                <td><input type="text" th:field="*{}" placeholder="F.eks. 100"/></td>
+                <td><input type="color" th:field="*{calendarColor}"/></td>
             </tr>
         </table>
         <input class="btn btn-success" role="button" type="submit" value="Gem" />
-        <form class="delete" th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
-            <input class="update" type="hidden" th:field="*{id}" placeholder="name"/>
-            <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="Slet" />
-            <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="Fortryd" />
-        </form>
+    </form>
+    <p></p>
+    <form th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
+        <input type="hidden" th:field="*{id}"/>
+        <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="Slet" />
+        <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="Fortryd" />
     </form>
 </div>
-
-
-
 
 
 </body>
