@@ -44,13 +44,11 @@
                 <td><input type="color" th:field="*{calendarColor}"/></td>
             </tr>
         </table>
-        <input class="btn btn-success" role="button" type="submit" value="Gem" />
-    </form>
-    <p></p>
-    <form th:action="@{/deleteActivity}"  method="post" th:object="${activity}" >
-        <input type="hidden" th:field="*{id}"/>
-        <input th:if="${create != true}" role="button" class="btn btn-danger" type="submit" value="Slet" />
-        <input th:if="${create == true}" role="button" class="btn btn-primary" type="submit" value="Fortryd" />
+        <div class="btn-group" role="group">
+            <input class="btn btn-success" role="button" type="submit" value="Gem" />
+            <a th:if="*{id != 0}" th:href="@{/deleteActivity(id=*{id})}" class="btn btn-danger">Slet</a>
+            <a th:if="*{id == 0}" th:href="@{/activitiesOverview}" class="btn btn-primary">Fortryd</a>
+        </div>
     </form>
 </div>
 

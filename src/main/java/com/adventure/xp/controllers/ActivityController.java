@@ -34,10 +34,9 @@ public class ActivityController {
         return "activity";
     }
 
-    @RequestMapping (value = "/deleteActivity", method = RequestMethod.POST)
-    String deleteActivity (@ModelAttribute("activity") Activity a) {
-        System.out.println(a);
-        ar.delete(a);
+    @RequestMapping (value = "/deleteActivity", method = RequestMethod.GET)
+    String deleteActivity (@RequestParam("id") String id) {
+        ar.delete(Integer.parseInt(id));
         return "redirect:/activitiesOverview";
     }
 
