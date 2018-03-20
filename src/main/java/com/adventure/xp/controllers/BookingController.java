@@ -31,7 +31,7 @@ public class BookingController {
         if(name!=null){
             model.addAttribute("id", name);
             Event event = eventRepo.read(name);
-            eventForm.setActivity(event.getTitle());
+            eventForm.setActivity(activityRepo);
             eventForm.setStartDate(event.getStart());
             eventForm.setEndDate(event.getEnd());
         } else {

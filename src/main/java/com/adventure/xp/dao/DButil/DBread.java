@@ -29,11 +29,11 @@ public class DBread {
         if(sqlRowSet.next()){
             event = new Event(
                     sqlRowSet.getInt("id"),
-                    sqlRowSet.getString("url")+"?id="+sqlRowSet.getInt("id"),
+                    "/event?id=" + sqlRowSet.getInt("id"),
                     sqlRowSet.getTimestamp("date_start"),
                     sqlRowSet.getTimestamp("date_end"),
-                    sqlRowSet.getString("title"),
-                    sqlRowSet.getString("color"),
+                    sqlRowSet.getString("customerName"),
+                    sqlRowSet.getInt("numberOfCustomers"),
                     sqlRowSet.getString("description"));
             return event;
         }
@@ -46,34 +46,16 @@ public class DBread {
         while (sqlRowSet.next()) {
             events.add(new Event(
                     sqlRowSet.getInt("id"),
-                    sqlRowSet.getString("url")+"?id="+sqlRowSet.getInt("id"),
+                    "/event?id=" + sqlRowSet.getInt("id"),
                     sqlRowSet.getTimestamp("date_start"),
                     sqlRowSet.getTimestamp("date_end"),
-                    sqlRowSet.getString("title"),
-                    sqlRowSet.getString("color"),
+                    sqlRowSet.getString("customerName"),
+                    sqlRowSet.getInt("numberOfCustomers"),
                     sqlRowSet.getString("description")));
         }
         return events;
     }
 
-    public Event readEventById(int id) {
-        Event event;
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM adventuredb.events WHERE id = " + id);
-        while (sqlRowSet.next()) {
-            event = new Event(
-                    sqlRowSet.getInt("id"),
-                    sqlRowSet.getString("url"),
-                    sqlRowSet.getDate("date_start"),
-                    sqlRowSet.getDate("date_end"),
-                    sqlRowSet.getString("title"),
-                    sqlRowSet.getString("color"),
-                    sqlRowSet.getNString("description"));
-
-            return event;
-
-        }
-        return null;
-    }
 
     public Activity readActivity(int id) {
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM activities WHERE id='" + id + "'");
