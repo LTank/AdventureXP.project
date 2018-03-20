@@ -37,8 +37,8 @@ public class DBupdate {
         try {
             jdbc.update("UPDATE events SET date_start = '" + new Timestamp(event.getStart().getTime())
                     + "', date_end = '" + new Timestamp(event.getEnd().getTime())
-                    + "', title = + '" + event.getTitle()
-                    + "', color = '" + event.getColor()
+                    + "', customer_name = + '" + event.getCustomerName()
+                    + "', number_of_customers = '" + event.getNumberOfCustomers()
                     + "', description = '" + event.getDescription()
                     + "'WHERE id = " + event.getId());
             return 1;

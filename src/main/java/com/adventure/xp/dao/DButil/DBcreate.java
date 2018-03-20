@@ -15,6 +15,8 @@ public class DBcreate {
 
     @Autowired
     private JdbcTemplate jdbc;
+
+
     
     // Creating a new user
     public int createUser (User u) {
@@ -59,10 +61,11 @@ public class DBcreate {
     }
 
     public int createEvent (Event e) {
-        String query = "INSERT INTO events (url, date_start, date_end, title, color, description) " +
-                        "VALUES (?, ?, ?, ?, ?, ?);";
 
-        return jdbc.update(query, new Object[] {e.getUrl(), new Timestamp(e.getStart().getTime()), new Timestamp(e.getEnd().getTime()), e.getTitle(), e.getColor(), e.getDescription()});
+        String query = "INSERT INTO events (number_of_customers, customer_name, date_start, date_end, description) " +
+                        "VALUES (?, ?, ?, ?, ?);";
+
+        return jdbc.update(query, new Object[] {e.getNumberOfCustomers(), e.getCustomerName(), new Timestamp(e.getStart().getTime()), new Timestamp(e.getEnd().getTime()), e.getDescription()});
     }
 
 

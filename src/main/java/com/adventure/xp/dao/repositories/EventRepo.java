@@ -2,8 +2,10 @@ package com.adventure.xp.dao.repositories;
 
 
 import com.adventure.xp.dao.DButil.*;
+import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -22,7 +24,8 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Autowired
     private DBdelete dbd;
-    
+
+    @Autowired
     private Util util;
 
 
@@ -52,5 +55,9 @@ public class EventRepo implements ICrudRepo<Event> {
     public ArrayList<Event> readAll() {
 
         return dbr.readAllEvents();
+    }
+
+    public int readLastCreatedEventId() {
+        return dbr.readLastCreatedEventId();
     }
 }

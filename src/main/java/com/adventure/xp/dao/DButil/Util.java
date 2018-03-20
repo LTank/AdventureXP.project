@@ -1,5 +1,6 @@
 package com.adventure.xp.dao.DButil;
 
+import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,9 +13,16 @@ import java.util.ArrayList;
 @Repository
 public class Util {
 
-    @Autowired
+
     private JdbcTemplate jdbc;
+
     private SqlRowSet sqlRowSet;
+
+    @Autowired
+    public Util(JdbcTemplate jdbc){
+        this.jdbc = jdbc;
+    }
+
 
     public int readLastInsertID() {
         sqlRowSet = jdbc.queryForRowSet("SELECT id FROM activities WHERE LAST_INSERT_ID()");
@@ -44,6 +52,34 @@ public class Util {
         String description = jdbc.queryForObject(query, new Object[] {title}, String.class);
 
         return description;
+    }
+
+
+
+    public Activity getActivityByName(String name){
+        String query = "SELECT * FROM activities WHERE name=?";
+
+        sqlRowSet = jdbc.queryForRowSet(query, new Object[] {name});
+        while (sqlRowSet.next()) {
+            return new Activity(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("name"),
+                    sqlRowSet.getInt("age_limit"),
+                    sqlRowSet.getInt("height_limit"),
+                    sqlRowSet.getInt("max_attendants"),
+                    sqlRowSet.getDouble("price"),
+                    sqlRowSet.getString("calendar_color"),
+                    sqlRowSet.getString("description"));
+        }
+        return new Activity();
+    }
+
+
+
+    public int addEventActivityJoin (int eventId, Activity activity){
+        String query = "INSERT into event_activity_con (event_id, activity_id) VALUES (?, ?)";
+
+        return jdbc.update(query, new Object[] {eventId, activity.getId()});
     }
 
 }
