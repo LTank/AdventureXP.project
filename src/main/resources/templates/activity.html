@@ -10,40 +10,45 @@
 
 <div class="container">
     <h2>Aktivitets detaljer</h2>
-    <form th:action="@{/activity}" method="post" th:object="${activity}">
-        <table>
-            <tr>
-                <td><input type="hidden" th:field="*{id}" placeholder="id"/></td>
-            </tr>
-            <tr>
-                <td>Navn: </td>
-                <td><input type="text" th:field="*{name}" placeholder="Navn"/></td>
-            </tr>
-            <tr>
-                <td>Aldersbegrænsning i år: </td>
-                <td><input type="text" th:field="*{ageLimit}" placeholder="F.eks. 12"/></td>
-            </tr>
-            <tr>
-                <td>Minimums højde i cm: </td>
-                <td><input type="text" th:field="*{heightLimit}" placeholder="F.eks. 70 (70CM)"/></td>
-            </tr>
-            <tr>
-                <td>Maks. antal deltagere</td>
-                <td><input type="text" th:field="*{maxAttendants}" placeholder="F.eks. 10"/></td>
-            </tr>
-            <tr>
-                <td>Pris i kr: </td>
-                <td><input type="text" th:field="*{price}" placeholder="F.eks. 100"/></td>
-            </tr>
-            <tr>
-                <td>Beskrivelse: </td>
-                <td><textarea rows="5" cols="50" maxlength="150" type="text" th:field="*{description}" placeholder="F.eks. sjovest for 6 eller flere, massere af action"></textarea></td>
-            </tr>
-            <tr>
-                <td>Farve: </td>
-                <td><input type="color" th:field="*{calendarColor}"/></td>
-            </tr>
-        </table>
+    <form th:action="@{/activity}" method="post" th:object="${activity}" class="col-sm-4">
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}" placeholder="id"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Navn:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Navn"/>
+        </div>
+
+        <div class="form-group">
+            <label for="ageLimit">Aldersbegrænsning i år:</label>
+            <input type="text" class="form-control" id="ageLimit" th:field="*{ageLimit}" placeholder="F.eks. 12"/>
+        </div>
+
+        <div class="form-group">
+            <label for="heightLimit">Minimums højde i cm:</label>
+            <input type="text" class="form-control" id="heightLimit" th:field="*{heightLimit}" placeholder="F.eks. 70 (70CM)"/>
+        </div>
+
+        <div class="form-group">
+            <label for="maxAttendants">Maks. antal deltagere:</label>
+            <input type="text" class="form-control" id="maxAttendants" th:field="*{maxAttendants}" placeholder="F.eks. 10"/>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Pris i kr:</label>
+            <input type="text" class="form-control" id="price" th:field="*{price}" placeholder="F.eks. 100"/>
+        </div>
+
+        <div class="form-group">
+            <label for="color">Farve:</label>
+            <input type="text" class="form-control" id="color" th:field="*{calendarColor}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Beskrivelse:</label>
+            <textarea class="form-control" id="description" rows="3"  th:field="*{description}" placeholder="F.eks. sjovest for 6 eller flere, massere af action"></textarea>
+        </div>
+
         <div class="btn-group" role="group">
             <input class="btn btn-success" role="button" type="submit" value="Gem" />
             <a th:if="*{id != 0}" th:href="@{/deleteActivity(id=*{id})}" class="btn btn-danger">Slet</a>
