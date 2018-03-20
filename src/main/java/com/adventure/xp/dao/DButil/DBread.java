@@ -14,6 +14,8 @@ import java.util.ArrayList;
 @Repository
 public class DBread {
 
+    @Autowired
+    private Util dbu;
     private JdbcTemplate jdbc;
 
     private SqlRowSet sqlRowSet;
@@ -25,7 +27,9 @@ public class DBread {
 
     public Event readEvent(int id){
         Event event;
+        Activity activity = dbu.getActivityByEventId(id);
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events WHERE id = " + id);
+
         if(sqlRowSet.next()){
             event = new Event(
                     sqlRowSet.getInt("id"),
@@ -34,7 +38,10 @@ public class DBread {
                     sqlRowSet.getTimestamp("date_end"),
                     sqlRowSet.getString("customerName"),
                     sqlRowSet.getInt("numberOfCustomers"),
-                    sqlRowSet.getString("description"));
+                    sqlRowSet.getString("description"),
+                    activity.getName(),
+                    activity.getCalendarColor()
+                    );
             return event;
         }
         return null;
@@ -44,14 +51,17 @@ public class DBread {
         ArrayList<Event> events = new ArrayList<>();
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM events");
         while (sqlRowSet.next()) {
+            Activity activity = dbu.getActivityByEventId(sqlRowSet.getInt("id"));
             events.add(new Event(
                     sqlRowSet.getInt("id"),
                     "/event?id=" + sqlRowSet.getInt("id"),
                     sqlRowSet.getTimestamp("date_start"),
                     sqlRowSet.getTimestamp("date_end"),
-                    sqlRowSet.getString("customerName"),
-                    sqlRowSet.getInt("numberOfCustomers"),
-                    sqlRowSet.getString("description")));
+                    sqlRowSet.getString("customer_name"),
+                    sqlRowSet.getInt("number_of_customers"),
+                    sqlRowSet.getString("description"),
+                    activity.getName(),
+                    activity.getCalendarColor()));
         }
         return events;
     }

@@ -31,9 +31,9 @@ public class BookingController {
         if(name!=null){
             model.addAttribute("id", name);
             Event event = eventRepo.read(name);
-            eventForm.setActivity(activityRepo);
-            eventForm.setStartDate(event.getStart());
-            eventForm.setEndDate(event.getEnd());
+            event.setActivityName(eventForm.getActivity());
+            event.setStart(eventForm.getStartDate());
+            event.setEnd(eventForm.getEndDate());
         } else {
             model.addAttribute("id", 0);
         }
@@ -56,9 +56,8 @@ public class BookingController {
             Event event = eventRepo.read(id);
             event.setStart(eventForm.getStartDate());
             event.setEnd(eventForm.getEndDate());
-            event.setTitle(eventForm.getActivity());
-            event.setColor(activityRepo.getColorByTitle(event.getTitle()));
-            event.setDescription(activityRepo.getDescriptionByTitle(event.getTitle()));
+            event.setColor(activityRepo.getColorByTitle(event.getActivityName()));
+            event.setDescription(activityRepo.getDescriptionByTitle(event.getActivityName()));
 
             eventRepo.update(event);
         }
@@ -78,7 +77,11 @@ public class BookingController {
         String color = activityRepo.getColorByTitle(title);
         String description = activityRepo.getDescriptionByTitle(title);
 
-        return new Event(eventId, url, start, end, title, color, description);
+        int numberOfCustomers = 1;
+        String customerName = "Anders";
+
+
+        return new Event(eventId, url, start, end, description, numberOfCustomers, customerName, title, color);
     }
 
     @RequestMapping (value = "/deleteEvent", method = RequestMethod.GET)

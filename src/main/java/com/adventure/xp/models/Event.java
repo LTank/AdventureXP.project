@@ -11,11 +11,13 @@ public class Event {
     private String description;
     private int numberOfCustomers;
     private String customerName;
+    private String activityName;
+    private String color;
 
     public Event() {
     }
 
-    public Event(int id, String url, Date start, Date end, String description, int numberOfCustomers, String customerName) {
+    public Event(int id, String url, Date start, Date end, String description, int numberOfCustomers, String customerName, String activityName, String color) {
         this.id = id;
         this.url = url;
         this.start = start;
@@ -23,6 +25,8 @@ public class Event {
         this.description = description;
         this.numberOfCustomers = numberOfCustomers;
         this.customerName = customerName;
+        this.activityName = activityName;
+        this.color = color;
     }
 
     public String getUrl() {
@@ -81,6 +85,22 @@ public class Event {
         this.customerName = customerName;
     }
 
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -91,6 +111,8 @@ public class Event {
                 ", description='" + description + '\'' +
                 ", numberOfCustomers=" + numberOfCustomers +
                 ", customerName='" + customerName + '\'' +
+                ", activityName='" + activityName + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

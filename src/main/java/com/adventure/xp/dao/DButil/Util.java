@@ -1,5 +1,6 @@
 package com.adventure.xp.dao.DButil;
 
+import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +16,7 @@ public class Util {
     @Autowired
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
+
 
     public int readLastInsertID() {
         sqlRowSet = jdbc.queryForRowSet("SELECT id FROM activities WHERE LAST_INSERT_ID()");
@@ -44,6 +46,19 @@ public class Util {
         String description = jdbc.queryForObject(query, new Object[] {title}, String.class);
 
         return description;
+    }
+
+    public Activity getActivityByEventId(int eventId) {
+        DBread dbr = new DBread(jdbc);
+        return dbr.readActivity(getActivityIdByEventId(eventId));
+    }
+
+    public int getActivityIdByEventId (int eventId){
+        String query = "SELECT activity_id FROM event_activity_con WHERE event_id=" + eventId;
+
+        Integer activityId = jdbc.queryForObject(query, Integer.class);
+
+        return activityId;
     }
 
 }
