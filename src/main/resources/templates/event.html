@@ -12,29 +12,27 @@
 
 <div class="container">
     <h2>Event detaljer</h2>
-    <form th:action="@{/createEvent(id=${id},method=(${eventForm.activity} ?  'Update' : 'Create'))}" method="post" th:object="${eventForm}">
-        <table>
-            <tr>
-                <td>Aktivitetstype: </td>
-                <td>
-                    <select name="activity" th:field="*{activity}">
-                        <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Start dato og tidspunkt: </td>
-                <td>
-                    <input type="datetime-local" id="startDate" th:field="*{startDate}">
-                </td>
-            </tr>
-            <tr>
-                <td>Slut dato og tidspunkt: </td>
-                <td>
-                    <input type="datetime-local" id="endDate" th:field="*{endDate}">
-                </td>
-            </tr>
-        </table>
+    <form th:action="@{/createEvent(id=${id},method=(${eventForm.activity} ?  'Update' : 'Create'))}" method="post" th:object="${eventForm}" class="col-sm-4">
+        <div class="form-group">
+            <label for="activity">Aktivitet:</label>
+            <select name="activity" th:field="*{activity}" class="custom-select" id="activity">
+                <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Dato og tid:</label>
+            <div>
+                <input class="form-control" type="datetime-local" id="startDate" th:field="*{startDate}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="endDate">Dato og tid:</label>
+            <div>
+                <input class="form-control" type="datetime-local" id="endDate" th:field="*{endDate}">
+            </div>
+        </div>
+
         <div class="btn-group" role="group">
             <input type="submit" class="btn btn-success" th:attrappend="value=${eventForm.activity   != null} ? Opdater : Opret">
             <a th:if="${id != 0}" th:href="@{/deleteEvent(id=${id})}" class="btn btn-danger">Slet</a>

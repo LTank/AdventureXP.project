@@ -14,7 +14,7 @@
                     <p class="card-text" >Aldersbegrænsning i år: <span th:text="${a.ageLimit}"></span></p>
                     <p class="card-text">Min. højde i cm: <span th:text="${a.heightLimit}"></span></p>
                     <p class="card-text">Maks. antal deltagere: <span th:text="${a.maxAttendants}"></span></p>
-                    <p class="card-text">Pris: <span th:text="${a.price}"></span></p>
+                    <p class="card-text">Pris: <span th:text="${#numbers.formatDecimal(a.price,1,2)}"></span></p>
                     <p class="card-text font-italic" th:text="${a.description}"></p>
                 </div>
                 <div class="card-body">
