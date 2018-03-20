@@ -50,7 +50,7 @@
         </div>
 
         <div class="btn-group" role="group">
-            <input class="btn btn-success" role="button" type="submit" value="Gem" />
+            <input class="btn btn-success" role="button" type="submit" value="Opret" />
             <a th:if="*{id != 0}" th:href="@{/deleteActivity(id=*{id})}" class="btn btn-danger">Slet</a>
             <a th:if="*{id == 0}" th:href="@{/activitiesOverview}" class="btn btn-primary">Fortryd</a>
         </div>
