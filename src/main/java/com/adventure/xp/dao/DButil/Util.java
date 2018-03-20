@@ -13,9 +13,15 @@ import java.util.ArrayList;
 @Repository
 public class Util {
 
-    @Autowired
+
     private JdbcTemplate jdbc;
+
     private SqlRowSet sqlRowSet;
+
+    @Autowired
+    public Util(JdbcTemplate jdbc){
+        this.jdbc = jdbc;
+    }
 
 
     public int readLastInsertID() {
@@ -48,17 +54,32 @@ public class Util {
         return description;
     }
 
-    public Activity getActivityByEventId(int eventId) {
-        DBread dbr = new DBread(jdbc);
-        return dbr.readActivity(getActivityIdByEventId(eventId));
+
+
+    public Activity getActivityByName(String name){
+        String query = "SELECT * FROM activities WHERE name=?";
+
+        sqlRowSet = jdbc.queryForRowSet(query, new Object[] {name});
+        while (sqlRowSet.next()) {
+            return new Activity(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("name"),
+                    sqlRowSet.getInt("age_limit"),
+                    sqlRowSet.getInt("height_limit"),
+                    sqlRowSet.getInt("max_attendants"),
+                    sqlRowSet.getDouble("price"),
+                    sqlRowSet.getString("calendar_color"),
+                    sqlRowSet.getString("description"));
+        }
+        return new Activity();
     }
 
-    public int getActivityIdByEventId (int eventId){
-        String query = "SELECT activity_id FROM event_activity_con WHERE event_id=" + eventId;
 
-        Integer activityId = jdbc.queryForObject(query, Integer.class);
 
-        return activityId;
+    public int addEventActivityJoin (int eventId, Activity activity){
+        String query = "INSERT into event_activity_con (event_id, activity_id) VALUES (?, ?)";
+
+        return jdbc.update(query, new Object[] {eventId, activity.getId()});
     }
 
 }

@@ -11,13 +11,13 @@ public class Event {
     private String description;
     private int numberOfCustomers;
     private String customerName;
-    private String activityName;
+    private String title;
     private String color;
 
     public Event() {
     }
 
-    public Event(int id, String url, Date start, Date end, String description, int numberOfCustomers, String customerName, String activityName, String color) {
+    public Event(int id, String url, Date start, Date end, String description, int numberOfCustomers, String customerName, String title, String color) {
         this.id = id;
         this.url = url;
         this.start = start;
@@ -25,7 +25,7 @@ public class Event {
         this.description = description;
         this.numberOfCustomers = numberOfCustomers;
         this.customerName = customerName;
-        this.activityName = activityName;
+        this.title = title;
         this.color = color;
     }
 
@@ -85,12 +85,12 @@ public class Event {
         this.customerName = customerName;
     }
 
-    public String getActivityName() {
-        return activityName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getColor() {
@@ -111,7 +111,7 @@ public class Event {
                 ", description='" + description + '\'' +
                 ", numberOfCustomers=" + numberOfCustomers +
                 ", customerName='" + customerName + '\'' +
-                ", activityName='" + activityName + '\'' +
+                ", title='" + title + '\'' +
                 ", color='" + color + '\'' +
                 '}';
     }
