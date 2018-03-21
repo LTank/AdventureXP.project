@@ -55,4 +55,8 @@ public class UserRepo implements ICrudRepo<User>{
     public ArrayList<User> readAll() {
         return dbr.readAllUsers();
     }
+
+    public User readByUsername (String username) {
+           return dbr.readByUsername(username);
+    }
 }

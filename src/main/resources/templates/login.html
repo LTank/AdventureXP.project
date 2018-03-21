@@ -18,8 +18,8 @@
     </div>
 
     <div class="row">
-        <div class="card" th:each="user : ${users}">
-            <a data-toggle="modal" data-target="#loginModal" th:href="@{/login(id=${user.id})}"><img th:attr="src=@{'/img/' + ${user.image} + '.jpg'},title=${user.username},alt=${user.username}" /></a>
+        <div id="th-loop" class="card mb-3 mx-auto" th:each="user : ${users}">
+            <a th:attr="data-username=${user.username}" data-toggle="modal" data-target="#loginModal" th:href="@{/login(id=${user.id})}"><img th:attr="src=@{'/img/' + ${user.image} + '.jpg'},title=${user.username},alt=${user.username}" th:href="@{/login(id=${user.id})}" /></a>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
                 <div class="modal-body">
                     <form role="form" th:action="@{/login}" method="post" th:object="${user}">
                         <div class="form-group">
-                            <input type="text" name="username" th:value="${username}" placeholder="Brugernavn" class="form-control"/>
+                            <input id="username" type="text" name="username" th:value="${username}" placeholder="Brugernavn" class="form-control"/>
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" placeholder="Kodeord" value="1234" class="form-control"/>
@@ -43,6 +43,15 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).on('show.bs.modal', '#loginModal', function(event){
+            var trigger = $(event.relatedTarget);
+            var trigger_data = trigger.data('username');
+            $("#username").prop('value', trigger_data);
+
+
+        })
+    </script>
 </div>
 </body>
 </html>

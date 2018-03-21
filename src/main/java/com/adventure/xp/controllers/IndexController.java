@@ -28,6 +28,7 @@ public class IndexController {
 
     @PostMapping("/login")
     public String loginSubmit(@RequestParam("id") String id, Model model) {
+        System.out.println("User id: " + id);
         model.addAttribute("users", userRepo.readAll());
         model.addAttribute("user", userRepo.read(Integer.parseInt(id)));
 
