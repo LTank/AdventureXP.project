@@ -17,8 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
     <script type="text/javascript">
-        var csrfParameter = '${_csrf.parameterName}';
-        var csrfToken = '${_csrf.token}';
         $(document).ready(function() {
             // page is now ready, initialize the calendar...
 
@@ -40,7 +38,7 @@
                 editable: false,
                 weekNumbers: true,
                 eventLimit: true, // allow "more" link when too many events
-
+                timeFormat: 'H(:mm)',
                 // Shows event desciption in the calendar
                 //eventRender: function (event, element, view) {
                 //    element.find('.fc-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">'+event.description+'</span></div>');
