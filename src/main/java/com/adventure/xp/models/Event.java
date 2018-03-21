@@ -1,12 +1,16 @@
 package com.adventure.xp.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Event {
 
     private int id;
     private String url;
+    @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date start;
+    @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date end;
     private String description;
     private int numberOfCustomers;
