@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header"/>
-<div class="container">
-    <h2>Aktiviteter</h2>
-    <div class="row">
-        <div class="card ml-3 mb-2 "  style="width: 22rem;" th:each="a : ${activities}">
+    <div th:replace="fragments/header :: header"/>
+    <div class="container">
+        <h2>Aktiviteter</h2>
+        <div class="row">
+            <div class="card ml-2 mb-2 mr-2" style="width: 22rem" th:each="a : ${activities}">
                 <h5 class="card-header text-white bg-primary" th:text="${a.name}"></h5>
                 <div class="card-body">
                     <p class="card-text" >Aldersbegrænsning i år: <span th:text="${a.ageLimit}"></span></p>
@@ -20,9 +21,8 @@
                 <div class="card-body">
                     <a class="btn btn-info m-b-xs" th:href="@{/activityView(activityId=${a.id})}">Opdater</a>
                 </div>
-
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
