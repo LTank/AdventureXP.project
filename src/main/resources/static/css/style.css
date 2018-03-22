@@ -16,7 +16,7 @@ body {
 
 /* Logo on login page */
 .logoBig {
-    margin: 20px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -28,7 +28,7 @@ body {
     padding: 20px;
     background: rgb(213, 213, 213);
     border-radius: 5px;
-    width: 25%;
+    width: 20rem;
     position: relative;
 }
 
