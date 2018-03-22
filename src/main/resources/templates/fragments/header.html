@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <div th:fragment="header-css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/event}">Opret Event</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                     <a class="nav-link" th:href="@{/createActivity}">Opret Aktivitet</a>
                 </li>
                 <li class="nav-item">
