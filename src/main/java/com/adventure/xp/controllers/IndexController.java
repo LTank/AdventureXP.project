@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.jws.WebParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class IndexController {
@@ -26,14 +28,8 @@ public class IndexController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginSubmit(@RequestParam("id") String id, Model model) {
-        System.out.println("User id: " + id);
-        model.addAttribute("users", userRepo.readAll());
-        model.addAttribute("user", userRepo.read(Integer.parseInt(id)));
 
-        return "redirect:calendar";
-    }
+
 
     @GetMapping("/logout")
     public String logout() {
