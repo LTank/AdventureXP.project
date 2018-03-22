@@ -52,7 +52,11 @@ public class UserRepo implements ICrudRepo<User>{
     }
 
     @Override
-    public ArrayList readAll() {
+    public ArrayList<User> readAll() {
         return dbr.readAllUsers();
+    }
+
+    public User readByUsername (String username) {
+           return dbr.readByUsername(username);
     }
 }

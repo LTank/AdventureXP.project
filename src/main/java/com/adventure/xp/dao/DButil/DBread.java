@@ -105,7 +105,7 @@ public class DBread {
     }
 
     public User readUser(int id) {
-        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role , users.enabled " +
+        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role, users.enabled, users.profile_image " +
                 "FROM users " +
                 "INNER JOIN user_roles " +
                 "ON users.username = user_roles.username " +
@@ -116,14 +116,15 @@ public class DBread {
                     sqlRowSet.getString("username"),
                     sqlRowSet.getString("password"),
                     sqlRowSet.getString("role"),
-                    sqlRowSet.getInt("enabled"));
+                    sqlRowSet.getInt("enabled"),
+                    sqlRowSet.getString("profile_image"));
         }
         return new User();
     }
 
     public ArrayList<User> readAllUsers() {
         ArrayList<User> users = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role , users.enabled " +
+        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role, users.enabled, users.profile_image " +
                 "FROM users " +
                 "INNER JOIN user_roles " +
                 "ON users.username = user_roles.username");
@@ -133,7 +134,8 @@ public class DBread {
                     sqlRowSet.getString("username"),
                     sqlRowSet.getString("password"),
                     sqlRowSet.getString("role"),
-                    sqlRowSet.getInt("enabled")));
+                    sqlRowSet.getInt("enabled"),
+                    sqlRowSet.getString("profile_image")));
         }
         return users;
     }
@@ -166,5 +168,23 @@ public class DBread {
 
     public Activity getActivityByEventId(int eventId) {
         return readActivity(getActivityIdByEventId(eventId));
+    }
+
+    public User readByUsername (String username) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT users.id, users.username, users.password, user_roles.role, users.enabled, users.profile_image " +
+                "FROM users " +
+                "INNER JOIN user_roles " +
+                "ON users.username = user_roles.username " +
+                "WHERE username ='" + username + "'");
+        while (sqlRowSet.next()) {
+            return new User(
+                    sqlRowSet.getInt("id"),
+                    sqlRowSet.getString("username"),
+                    sqlRowSet.getString("password"),
+                    sqlRowSet.getString("role"),
+                    sqlRowSet.getInt("enabled"),
+                    sqlRowSet.getString("profile_image"));
+        }
+        return new User();
     }
 }
