@@ -1,36 +1,36 @@
 package com.adventure.xp.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Event {
+
     private int id;
     private String url;
+    @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date start;
+    @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date end;
+    private String description;
+    private int numberOfCustomers;
+    private String customerName;
     private String title;
     private String color;
-    private String description;
-
-
-    public Event(int id, String url, Date start, Date end, String title, String color, String description) {
-        this.id = id;
-        this.url = url;
-        this.start = start;
-        this.end = end;
-        this.title = title;
-        this.color = color;
-        this.description = description;
-    }
 
     public Event() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Event(int id, String url, Date start, Date end, String description, int numberOfCustomers, String customerName, String title, String color) {
         this.id = id;
+        this.url = url;
+        this.start = start;
+        this.end = end;
+        this.description = description;
+        this.numberOfCustomers = numberOfCustomers;
+        this.customerName = customerName;
+        this.title = title;
+        this.color = color;
     }
 
     public String getUrl() {
@@ -39,6 +39,14 @@ public class Event {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getStart() {
@@ -57,6 +65,30 @@ public class Event {
         this.end = end;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getNumberOfCustomers() {
+        return numberOfCustomers;
+    }
+
+    public void setNumberOfCustomers(int numberOfCustomers) {
+        this.numberOfCustomers = numberOfCustomers;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -73,14 +105,6 @@ public class Event {
         this.color = color;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public String toString() {
         return "Event{" +
@@ -88,8 +112,11 @@ public class Event {
                 ", url='" + url + '\'' +
                 ", start=" + start +
                 ", end=" + end +
-                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", numberOfCustomers=" + numberOfCustomers +
+                ", customerName='" + customerName + '\'' +
+                ", title='" + title + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

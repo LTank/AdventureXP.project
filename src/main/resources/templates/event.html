@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adventure Alley</title>
+    <div th:replace="fragments/header :: header-css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+    <h2>Event detaljer</h2>
+    <form th:action="@{/createEvent(id=${id},method=(${event.title} ?  'Update' : 'Create'))}" method="post" th:object="${event}" class="col-sm-4">
+        <div class="form-group">
+            <label for="activity">Aktivitet:</label>
+            <select name="activity" th:field="*{title}" class="custom-select" id="activity">
+                <option th:each="acti : ${activities}" th:value="${acti.name}" th:text="${acti.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Start dato og tid:</label>
+            <div>
+                <input class="form-control" type="datetime-local" id="startDate" th:field="*{start}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="endDate">Start dato og tid:</label>
+            <div>
+                <input class="form-control" type="datetime-local" id="endDate" th:field="*{end}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Kontaktpersons navn: </label>
+            <input type="text" class="form-control" id="name" th:field="*{customerName}" placeholder="Navn"/>
+        </div>
+        <div class="form-group">
+            <label for="participants">Antal deltagere: </label>
+            <input type="number" class="form-control" id="participants" th:field="*{numberOfCustomers}" placeholder="F.eks. 4"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Beskrivelse:</label>
+            <textarea class="form-control" id="description" rows="3"  th:field="*{description}" placeholder="Er det f.eks. en polterabend?"></textarea>
+        </div>
+
+        <div class="btn-group" role="group">
+            <input type="submit" class="btn btn-success" th:attrappend="value=${event.title   != null} ? Opdater : Opret">
+            <a th:if="${id != 0}" th:href="@{/deleteEvent(id=${id})}" class="btn btn-danger">Slet</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

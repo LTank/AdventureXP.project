@@ -1,48 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head th:replace="layout :: relics">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title>Login side</title>
+    <div th:replace="fragments/header :: header-css"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container logoBig">
-    <a href="index.html" th:href="@{/}"> <img th:src="@{/img/logoBig.PNG}"/></a>
-</div>
-<form  th:action="@{/login}" method="post">
-<div class="container profiles">
-    <div th:if="${param.error}" class="popup">
+<body class="loginBody">
+<div class="container">
+    <div class="logoBig">
+        <a href="index.html" th:href="@{/}"> <img class="img-fluid" th:src="@{/img/logoBig.PNG}"/></a>
+    </div>
+    <div th:if="${param.error}" th:align="center">
         <div style="color:red">Kodeord er forkert - prøv igen.</div>
     </div>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
-    <a href="#popup1"> <img th:src="@{/img/anonymous.jpg}"/></a>
 
-    <div id="popup1" class="overlay">
-        <div class="popup">
-
-                <!--her er de 2 textblocke til username og password-->
-                <div class="form-group">
-                    <input type="hidden" name="username" value="user" class="login-input"
-                           placeholder="Brugernavn" required="true"/>
-                </div>
-                <div class="form-group">
-                    <input type="password"  name="password" class="login-input"
-                           placeholder="Kodeord" required="true" autofocus="true"/>
-                </div>
-
-                <!-- her er knapperne i popup boxen -->
-                <a class="btn cancel" href="#" >Afbryd</a>
-                <input type="submit" value="Login" class="btn"/>
-
+    <div class="row">
+        <div id="th-loop" class="card mb-3 mx-auto" th:each="user : ${users}">
+            <a th:attr="data-username=${user.username}" data-toggle="modal" data-target="#loginModal" th:href="@{/login(id=${user.id})}"><img th:attr="src=@{'/img/' + ${user.image} + '.jpg'},title=${user.username},alt=${user.username}" th:href="@{/login(id=${user.id})}" /></a>
         </div>
     </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input id="username" type="hidden" name="username" placeholder="Brugernavn" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <input id="password" type="password" name="password" placeholder="Kodeord" class="form-control"/>
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fortryd</button>
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on('show.bs.modal', '#loginModal', function(event){
+            var trigger = $(event.relatedTarget);
+            var trigger_data = trigger.data('username');
+            $("#username").prop('value', trigger_data);
+
+
+        })
+    </script>
 </div>
-</form>
 </body>
 </html>

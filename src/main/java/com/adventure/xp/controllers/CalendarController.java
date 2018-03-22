@@ -1,6 +1,8 @@
 package com.adventure.xp.controllers;
 
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class calendarController {
+public class CalendarController {
 
 //    @GetMapping("/calendar")
 //    public String calendar() {
@@ -16,7 +18,7 @@ public class calendarController {
 //    }
 
     @RequestMapping(path = "/calendar", method = RequestMethod.GET)
-    String index (Model model){
+    String calendarShow (Model model){
         return "calendar";
     }
 

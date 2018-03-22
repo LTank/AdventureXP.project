@@ -1,12 +1,11 @@
 package com.adventure.xp.dao.repositories;
 
-import ch.qos.logback.core.db.dialect.DBUtil;
-import com.adventure.xp.dao.DButil.DBcreate;
-import com.adventure.xp.dao.DButil.DBdelete;
-import com.adventure.xp.dao.DButil.DBread;
-import com.adventure.xp.dao.DButil.DBupdate;
+
+import com.adventure.xp.dao.DButil.*;
+import com.adventure.xp.models.Activity;
 import com.adventure.xp.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -25,31 +24,40 @@ public class EventRepo implements ICrudRepo<Event> {
 
     @Autowired
     private DBdelete dbd;
-    
-    private DBUtil util;
+
+    @Autowired
+    private Util util;
+
+
+
 
     @Override
     public int create(Event e) {
-        return 0;
+        return dbc.createEvent(e);
     }
 
     @Override
     public Event read(int id) {
-        return new Event();
+        return dbr.readEvent(id);
     }
 
     @Override
     public int update(Event e) {
-        return 0;
+        return dbu.updateEventById(e);
     }
 
     @Override
-    public int delete(Event e) {
-        return 0;
+    public int delete(int id) {
+        return dbd.deleteEvent(id);
     }
 
     @Override
     public ArrayList<Event> readAll() {
+
         return dbr.readAllEvents();
+    }
+
+    public int readLastCreatedEventId() {
+        return dbr.readLastCreatedEventId();
     }
 }

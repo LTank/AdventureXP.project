@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Calendar</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" />
-
-
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-
-
+<div class="container-fluid">
+    <div th:replace="fragments/header :: header"/>
 
     <div id='calendar'></div>
 
@@ -20,17 +17,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             // page is now ready, initialize the calendar...
+            function get_calendar_height() {
+                return $(window).height() - 30;
+            }
 
+            $(window).resize(function() {
+                $('#calendar').fullCalendar('option', 'height', get_calendar_height());
+            });
 
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
-                defaultView: 'agendaDay',
+                defaultView: 'agendaWeek',
                 firstDay: '1',
                 displayEventTime: true,
                 themeSystem: 'bootstrap4',
+                timezone: 'local',
+                height: get_calendar_height,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -41,12 +46,22 @@
                 editable: false,
                 weekNumbers: true,
                 eventLimit: true, // allow "more" link when too many events
+                timeFormat: 'H(:mm)',
+                // Shows event desciption in the calendar
+                //eventRender: function (event, element, view) {
+                //    element.find('.fc-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">'+event.description+'</span></div>');
+                //},
+                views: {
+                    agendaWeek: {
+                        eventLimit: 2 // adjust to 6 only for agendaWeek/agendaDay
+                    }
+                },
                 events: {
                     url: '/api/event/all'
                 }
             });
-
         });
     </script>
+</div>
 </body>
 </html>
